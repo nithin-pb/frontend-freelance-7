@@ -1,0 +1,117 @@
+.ag-theme-custom-react {
+    --ag-header-height: 40px;
+    --ag-borders: '1px solid';
+    --ag-borders-critical: var(--border-color);
+    --ag-border-color: var(--border-color);
+    --ag-borders-secondary: var(--border-color);
+    --ag-data-color: var(--ag-foreground-color);
+    --ag-header-background-color: #e6e6e68f;
+    --ag-background-color: var(--fq-background-color-1);
+    --ag-odd-row-background-color: var(--ag-background-color);
+    --ag-subheader-background-color: var(--ag-background-color);
+    --ag-control-panel-background-color: var(--ag-background-color);
+    --ag-borders: none;
+    --ag-borders-critical: true;
+    --ag-font-family: var(--font-family);
+    --ag-font-size: 13px;
+    --ag-input-focus-box-shadow: null;
+    --ag-row-height: 40px;
+    --ag-popup-shadow: (
+        0 2px 1px -1px rgba(0, 0, 0, 0.2),
+        0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+        0px 1px 3px 0px rgba(0, 0, 0, 0.13)
+    );
+
+    .ag-menu-option-active {
+        background-color: var(--primary-clr);
+        color: var(--background-color);
+    }
+}
+
+// // custom override styles by nithin
+
+// .ag-header-cell-text {
+//     color: var(--fq-secondary-text-color);
+// }
+
+// .ag-header-cell {
+//     &::after {
+//         background: var(--border-clr) !important;
+//         width: 1px !important;
+//     }
+// }
+
+// .ag-header-cell-resize {
+//     &::after {
+//         background: transparent !important;
+//     }
+// }
+
+// .ag-picker-field-wrapper {
+//     border-radius: 2px !important;
+// }
+
+// .ag-menu {
+//     border: solid 1px #00000012;
+// }
+
+// .ag-picker-field-icon {
+//     padding-right: 7px !important;
+// }
+
+// .data-grid-wrapper {
+//     text-align: start;
+//     box-sizing: border-box;
+//     height: 580px;
+// }
+
+// .grid-properties {
+//     width: fit-content;
+//     width: -moz-fit-content;
+//     max-width: 500px;
+
+//     .MuiPagination-ul {
+//         flex-wrap: nowrap;
+//     }
+// }
+
+// .ag-cell-data-change {
+//     background: red !important;
+// }
+
+// .ag-selection-checkbox {
+//     margin-right: 16px !important;
+// }
+
+// .ag-header-select-all {
+//     margin-right: 16px !important;
+// }
+
+// .ag-checked::after {
+//     color: var(--secondary) !important;
+// }
+
+// .ag-row-selected {
+//     background-color: rgba(0, 0, 0, 0.07) !important;
+// }
+
+// .grid-toolbox {
+//     font-family: var(--fq-font-family);
+//     border-bottom: 1px solid var(--fq-border-color-1);
+
+//     li {
+//         padding-right: 8px;
+//     }
+
+//     .global-search-input {
+//         height: 40px;
+//         outline: none;
+//         border: none;
+//         padding-left: 16px;
+//         flex-grow: 1;
+//         color: var(--fq-secondary-text-color);
+//         &::placeholder {
+//             font-weight: 500;
+//         }
+//     }
+// }

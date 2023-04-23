@@ -1,0 +1,14 @@
+.ProfileTemplate-Wrapper {
+    .template-individual {
+        min-height: 300px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .template-controls {
+        bottom: 8px;
+        left: 0;
+        right: 0;
+        position: absolute;
+    }
+}

@@ -1,5 +1,6 @@
 import { BrowserRouter as Router } from "react-router-dom"
 import { AuthorizationContext } from "../contexts"
+import { ThemeProvider } from './theme-provider'
 
 export default function GlobalProvider({ children }: IGlobalProvider) {
     // context and initialization goes here
@@ -7,9 +8,11 @@ export default function GlobalProvider({ children }: IGlobalProvider) {
 
     return (
         <Router>
-            <AuthorizationContext.Provider value={{ authorization }}>
-                {children}
-            </AuthorizationContext.Provider>
+            <ThemeProvider>
+                <AuthorizationContext.Provider value={{ authorization }}>
+                    {children}
+                </AuthorizationContext.Provider>
+            </ThemeProvider>
         </Router>
     )
 }

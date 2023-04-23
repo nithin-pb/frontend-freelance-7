@@ -1,47 +1,53 @@
-import { Link } from "react-router-dom"
-import { Typography } from "@mui/material"
+import { Link, NavLink } from "react-router-dom"
+import { Box, Typography } from "@mui/material"
+import { SupervisedUserCircleOutlined, AdminPanelSettingsOutlined, AssessmentOutlined, DownloadForOfflineOutlined } from '@mui/icons-material'
 
 import "./index.scss"
 
 const navigationMenuItems = [
     {
         name: 'Profile Management',
-        link: '/admin/profile',
-        icon: ''
+        link: '/dashboard/profile',
+        icon: <AdminPanelSettingsOutlined />
     },
     {
         name: 'User Management',
-        link: '/admin/user',
-        icon: ''
+        link: '/dashboard/user',
+        icon: <SupervisedUserCircleOutlined />
     },
     {
         name: 'Reports',
-        link: '/admin/reports',
-        icon: ''
+        link: '/dashboard/reports',
+        icon: <AssessmentOutlined />
     },
     {
         name: 'Download Center',
-        link: '/admin/download-center',
-        icon: ''
+        link: '/dashboard/download-center',
+        icon: <DownloadForOfflineOutlined />
     },
 ]
 
 
 export default function AdminNavigation() {
     return (
+
         <nav>
             <div className="navigation-icon">
+                CompanyName
             </div>
             <ul>
                 {
                     navigationMenuItems.map((e: any) => {
                         return (
-                            <li>
-                                <Link to={e.link}>
-                                    <Typography>
-                                        {e.name}
-                                    </Typography>
-                                </Link>
+                            <li key={e.name}>
+                                <NavLink to={e.link}>
+                                    <Box display={'flex'} alignItems={'center'} gap={1}>
+                                        {e.icon}
+                                        <Typography color={'inherit'}>
+                                            {e.name}
+                                        </Typography>
+                                    </Box>
+                                </NavLink>
                             </li>
                         )
                     })
