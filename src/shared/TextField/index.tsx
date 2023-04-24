@@ -26,8 +26,8 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 }));
 
 
-export default function TextField(props: ITextField) {
-    const { label, ...otherProps } = { ...props }
+export default function TextField(props: ITextField | any) {
+    const { label = '', ...otherProps } = { ...props }
     return (
         <FormControl fullWidth>
             <InputLabel shrink htmlFor={`${label.replaceAll(' ', '')}`} sx={{ ml: -1.5 }}>

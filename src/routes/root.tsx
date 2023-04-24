@@ -1,6 +1,14 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 
-import { HomePage, NotFound, Login, Admin, AdminUser, ProfileManagement } from '../pages'
+import {
+    HomePage,
+    NotFound,
+    Login,
+    Admin,
+    AdminUser,
+    ProfileManagement,
+    DownloadCenter
+} from '../pages'
 import {
     ProfileManagement as ProfileManagementCmt,
     ProfileUpdate,
@@ -24,7 +32,7 @@ export default function RootRoute() {
                     <Route path=':id' element={<ProfileUpdate />} />
                 </Route>
                 <Route path='reports' element={<AdminUser />} />
-                <Route path='download-center' element={<AdminUser />} />
+                <Route path='download-center' element={<DownloadCenter />} />
             </Route>
             <Route path='/login' element={<Login />} />
             <Route path='*' element={<NotFound />} />

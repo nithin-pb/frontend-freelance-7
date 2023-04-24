@@ -3,6 +3,7 @@ import { Formik, Form } from "formik";
 
 import { Button, TextField } from "../../shared";
 import { TitleWidget } from "..";
+import { Update } from "@mui/icons-material";
 
 export default function UserUpdate() {
 
@@ -32,7 +33,7 @@ export default function UserUpdate() {
                                     </Grid>
                                 </Grid>
                                 <Box mt={2}>
-                                    <Button>
+                                    <Button variant={'contained'} startIcon={<Update />}>
                                         Update Details
                                     </Button>
                                 </Box>
@@ -57,7 +58,7 @@ export default function UserUpdate() {
                                         </Grid>
                                     </Grid>
                                     <Box mt={2}>
-                                        <Button>
+                                        <Button variant={'contained'} startIcon={<Update />}>
                                             Update Password
                                         </Button>
                                     </Box>
