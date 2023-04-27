@@ -9,7 +9,6 @@ export default function AdminUser() {
     return (
         <Box style={{ height: '100vh', flex: 1, width: 'calc(100vw - 250px)' }}>
             <Title />
-            <Divider />
             <DataGrid
                 fixedColumns={columDefinition}
                 gridData={data}

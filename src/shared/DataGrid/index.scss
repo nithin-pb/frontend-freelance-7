@@ -115,3 +115,31 @@
 //         }
 //     }
 // }
+
+.grid-toolbox {
+    //background-color: red;
+    box-shadow: 0 0 1px 1px var(--border-color);
+    border-radius: 10px;
+    margin: 16px 16px;
+
+    input {
+        outline: none;
+        border: none;
+        padding: 16px 12px;
+        padding-left: 8px;
+        flex: 1;
+        font-family: var(--font-family);
+
+        &::placeholder {
+            font-weight: 500;
+            font-family: var(--font-family);
+        }
+    }
+}
+
+.GridWrapper {
+    // border: 1px solid var(--border-color);
+    // border-radius: 10px;
+    // overflow: hidden;
+    // margin: 16px;
+}

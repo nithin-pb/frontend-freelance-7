@@ -5,14 +5,14 @@ export const columDefinition = [
     {
         headerName: '',
         field: 'id',
-        width: '50px',
+        width: 50,
         cellRendererFramework: GridFrameworkComponentEditUser,
         cellStyle: { padding: 0, border: 'none' }
     },
     {
         headerName: '',
         field: 'id',
-        width: '40px',
+        width: 40,
         cellRendererFramework: GridFrameworkComponentDeleteUser,
         cellStyle: { padding: 0, border: 'none' }
     },

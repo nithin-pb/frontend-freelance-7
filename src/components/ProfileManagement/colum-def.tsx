@@ -11,14 +11,14 @@ export const columDefinition = [
     {
         headerName: '',
         field: 'id',
-        width: '50px',
+        width: 50,
         cellRendererFramework: GridFrameworkComponentEditProfile,
         cellStyle: { padding: 0, border: 'none' }
     },
     {
         headerName: '',
         field: 'id',
-        width: '40px',
+        width: 40,
         cellRendererFramework: GridFrameworkComponentDeleteProfile,
         cellStyle: { padding: 0, border: 'none' }
     },
@@ -49,7 +49,7 @@ export const columDefinition = [
     },
     {
         field: 'linkedIn',
-        width: '120px',
+        width: 120,
         cellRendererFramework: function GFC(props: any) {
             return (
                 <GridFrameworkComponentSocialMedia icon={<LinkedIn />} value={props.value} />
@@ -58,7 +58,7 @@ export const columDefinition = [
     },
     {
         field: 'skype',
-        width: '100px',
+        width: 100,
         cellRendererFramework: function GFC(props: any) {
             return (
                 <GridFrameworkComponentSocialMedia icon={<img style={{ width: 17 }} src={skypeIcon} alt={'skype icon'} />} value={props.value} />
@@ -67,7 +67,7 @@ export const columDefinition = [
     },
     {
         field: 'instagram',
-        width: '120px',
+        width: 120,
         cellRendererFramework: function GFC(props: any) {
             return (
                 <GridFrameworkComponentSocialMedia icon={<Instagram />} value={props.value} />
@@ -76,7 +76,7 @@ export const columDefinition = [
     },
     {
         field: 'facebook',
-        width: '120px',
+        width: 120,
         cellRendererFramework: function GFC(props: any) {
             return (
                 <GridFrameworkComponentSocialMedia icon={<Facebook />} value={props.value} />
@@ -85,7 +85,7 @@ export const columDefinition = [
     },
     {
         field: 'twitter',
-        width: '120px',
+        width: 120,
         cellRendererFramework: function GFC(props: any) {
             return (
                 <GridFrameworkComponentSocialMedia icon={<Twitter />} value={props.value} />

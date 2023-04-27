@@ -19,8 +19,10 @@ import {
 export default function RootRoute() {
     return (
         <Routes>
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path='/' element={<HomePage />} />
             <Route path='/dashboard' element={<Admin />}>
+                <Route path="/dashboard" element={<Navigate to="profile" replace />} />
                 <Route path='user' element={<AdminUser />} >
                     <Route path="" element={<Navigate to="list" replace />} />
                     <Route path='list' element={<AdminUserCmt />} />

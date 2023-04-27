@@ -10,6 +10,7 @@ import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 
 import './index.scss'
+import { Divider } from '@mui/material';
 
 export default function DataGrid(props: IDataGrid) {
     const { height = '100%', gridData, fixedColumns, disableTopToolBox = false } = { ...props }
@@ -49,9 +50,12 @@ export default function DataGrid(props: IDataGrid) {
     }, [gridData])
 
     return (
-        <div style={{ height: '100%' }}>
-            <div className={'ag-theme-alpine ag-theme-custom-react'}
-                style={{ height: `calc(${height} - 45px)` }}
+        <div style={{ height: '100%' }} >
+            {/* <Divider /> */}
+            <GridToolBox gridApi={gridApi} gridColumnApi={gridColumnApi} totalPage={0} currentPage={0} />
+            <Divider />
+            <div className={'ag-theme-alpine ag-theme-custom-react GridWrapper'}
+                style={{ height: `calc(${height} - 179px)` }}
                 id={'grid-wrapper'}>
                 <AgGridReact
                     defaultColDef={defaultColDef}
