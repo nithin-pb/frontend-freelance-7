@@ -4,5 +4,7 @@ export default interface IDataGrid {
     gridStyle?: object,
     frameworkComponents?: object,
     height?: string | number,
-    disableTopToolBox?: boolean
+    disableTopToolBox?: boolean,
+    extraComponents?: any,
+    rowSelection?: 'single' | 'multiple'
 }

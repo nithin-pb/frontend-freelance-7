@@ -6,7 +6,7 @@ import Button from '../Button';
 
 
 export function GridToolBox(props: IGridToolBox) {
-    const { gridApi, totalPage, currentPage, gridColumnApi } = { ...props }
+    const { gridApi, totalPage, currentPage, gridColumnApi, extraComponents } = { ...props }
     const [anchorEl, setAnchorEl] = useState(null)
     const gotoPageNumber = (pageNumber: number) => {
         gridApi.paginationGoToPage(pageNumber - 1);
@@ -22,15 +22,18 @@ export function GridToolBox(props: IGridToolBox) {
             direction={'row'}
             sx={{ pr: 2 }}
             alignItems={'center'}>
-            <Button
-                onClick={onBtnExport}
-                sx={{ ml: 1 }}
-                startIcon={<SaveOutlined
-                    fontSize={'small'}
-                    color={'action'} />}
-                variant={"outlined"}>
-                Save
-            </Button>
+            <Box sx={{ ml: 1, display: 'flex', gap: 1.5, alignItems: 'center' }}>
+                {extraComponents}
+                <Button
+                    onClick={onBtnExport}
+                    startIcon={<SaveOutlined
+                        fontSize={'small'}
+                        color={'primary'} />}
+                    variant={"outlined"}>
+                    Save
+                </Button>
+            </Box>
+
             <Divider orientation={'vertical'} flexItem sx={{ ml: 2 }} />
 
             <GlobalSearchBox

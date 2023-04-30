@@ -3,28 +3,41 @@ import { Language, LinkedIn, Facebook, Instagram, Twitter } from "@mui/icons-mat
 import { GridFrameworkComponentEditProfile } from "./GFCEditProfile"
 import { GridFrameworkComponentDeleteProfile } from "./GFCDeleteProfile"
 import { GridFrameworkComponentSocialMedia } from "./GFCSocialMedia"
+import { GridFrameworkComponentProfileName } from "./GFCProfileName"
 
 //@ts-ignore
 import skypeIcon from '../../assets/icons/skype.png'
 
 export const columDefinition = [
     {
+        checkboxSelection: true,
         headerName: '',
         field: 'id',
         width: 50,
+        headerCheckboxSelection: true,
+        cellRendererFramework: function GFC(props: any) {
+            console.log(props)
+            return null
+        }
+    },
+    {
+        headerName: '',
+        field: 'id',
+        width: 45,
         cellRendererFramework: GridFrameworkComponentEditProfile,
         cellStyle: { padding: 0, border: 'none' }
     },
     {
         headerName: '',
         field: 'id',
-        width: 40,
+        width: 45,
         cellRendererFramework: GridFrameworkComponentDeleteProfile,
         cellStyle: { padding: 0, border: 'none' }
     },
     {
         field: 'name',
         flex: 1,
+        cellRendererFramework: GridFrameworkComponentProfileName
     },
     {
         field: 'companyName',

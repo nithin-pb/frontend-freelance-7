@@ -29,7 +29,7 @@ export function Template() {
                     <Box sx={{ position: 'sticky', top: 0, zIndex: 1000, right: 0, background: 'white', overflow: 'hidden' }}>
                         <Box display={'flex'} alignItems={'center'} width={'100%'} justifyContent={'space-between'} sx={{ p: 2 }}>
                             <Typography sx={{ fontSize: 18, fontWeight: 600 }} variant={'body1'}>
-                                Select template
+                                Select Template
                             </Typography>
                             <IconButton onClick={handleToggle}>
                                 <CloseOutlined />

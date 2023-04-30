@@ -7,7 +7,7 @@ export function GridFrameworkComponentEditUser(props: any) {
         <Box >
             <Link to={`/dashboard/user/${props.value}`}>
                 <IconButton size={'small'} sx={{ ml: 1 }}>
-                    <Edit />
+                    <Edit fontSize="small" />
                 </IconButton>
             </Link>
 

@@ -12,6 +12,7 @@ import {
 import {
     ProfileManagement as ProfileManagementCmt,
     ProfileUpdate,
+    ProfileReadOnly,
     AdminUser as AdminUserCmt,
     UserUpdate
 } from '../components'
@@ -25,11 +26,13 @@ export default function RootRoute() {
                 <Route path="/dashboard" element={<Navigate to="profile" replace />} />
                 <Route path='user' element={<AdminUser />} >
                     <Route path="" element={<Navigate to="list" replace />} />
+
                     <Route path='list' element={<AdminUserCmt />} />
                     <Route path=':id' element={<UserUpdate />} />
                 </Route>
                 <Route path='profile' element={<ProfileManagement />}>
                     <Route path="" element={<Navigate to="list" replace />} />
+                    <Route path='list/:id' element={<ProfileReadOnly />} />
                     <Route path='list' element={<ProfileManagementCmt />} />
                     <Route path=':id' element={<ProfileUpdate />} />
                 </Route>

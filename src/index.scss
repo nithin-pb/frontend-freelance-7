@@ -1,7 +1,8 @@
 :root {
-    --primary: rgb(85, 38, 255);
+    --primary: #9b00ff;
     --secondary: orange;
     --font-color-1: #000;
+    --primary-color: var(--primary);
     --font-family: 'Kumbh Sans', sans-serif;
     --border-color: rgba(0, 0, 0, 0.12);
 }

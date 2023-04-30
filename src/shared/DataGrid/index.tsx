@@ -13,7 +13,7 @@ import './index.scss'
 import { Divider } from '@mui/material';
 
 export default function DataGrid(props: IDataGrid) {
-    const { height = '100%', gridData, fixedColumns, disableTopToolBox = false } = { ...props }
+    const { height = '100%', gridData, fixedColumns, disableTopToolBox = false, extraComponents, rowSelection } = { ...props }
     const [gridApi, setGridApi] = useState<any>(null);
     const [gridColumnApi, setGridColumnApi] = useState(null);
     const [rowData, setRowData] = useState<any>(null);
@@ -52,7 +52,7 @@ export default function DataGrid(props: IDataGrid) {
     return (
         <div style={{ height: '100%' }} >
             {/* <Divider /> */}
-            <GridToolBox gridApi={gridApi} gridColumnApi={gridColumnApi} totalPage={0} currentPage={0} />
+            <GridToolBox gridApi={gridApi} gridColumnApi={gridColumnApi} totalPage={0} currentPage={0} extraComponents={extraComponents} />
             <Divider />
             <div className={'ag-theme-alpine ag-theme-custom-react GridWrapper'}
                 style={{ height: `calc(${height} - 179px)` }}
@@ -65,6 +65,7 @@ export default function DataGrid(props: IDataGrid) {
                     onRowDataChanged={onGridSizeChanged}
                     pagination={true}
                     animateRows={true}
+                    rowSelection={rowSelection}
                     paginationAutoPageSize={true}
                     suppressPaginationPanel={true}
                     suppressFieldDotNotation={true}

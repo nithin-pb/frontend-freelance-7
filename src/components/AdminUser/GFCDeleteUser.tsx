@@ -5,7 +5,7 @@ export function GridFrameworkComponentDeleteUser() {
     return (
         <Box>
             <IconButton size={'small'}>
-                <DeleteOutline />
+                <DeleteOutline fontSize="small" />
             </IconButton>
         </Box>
     )

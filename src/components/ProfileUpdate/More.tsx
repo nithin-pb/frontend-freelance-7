@@ -5,7 +5,7 @@ export function More() {
     return (
         <Box>
             <Typography>
-                Profile info
+                Profile Info
             </Typography>
             <Divider sx={{ mt: 1 }} />
             <Grid container spacing={3} sx={{ mt: 0.5 }}>
@@ -16,20 +16,21 @@ export function More() {
                     <TextField label={'Username'} />
                 </Grid>
                 <Grid item xs={12}>
-                    <TextField label={'Profile referred By'} />
+                    <TextField label={'Password'} disabled value={"********************"} />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField label={'Profile Referred By'} />
                 </Grid>
                 <Grid item xs={12}>
                     <Typography variant={'body2'} color={'text.secondary'}>
-                        Profile created by
+                        Profile Created By
                     </Typography>
                     <Typography sx={{ fontWeight: 600 }} color={'text.secondary'}>
                         Jane Doe
                     </Typography>
                 </Grid>
-                {/* <Grid item xs={12}>
-                    <TextField label={'Password'} />
-                </Grid> */}
             </Grid>
+            <Divider sx={{ mt: 1 }} />
         </Box>
     )
 }

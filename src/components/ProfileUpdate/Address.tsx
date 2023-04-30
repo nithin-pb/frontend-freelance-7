@@ -16,10 +16,10 @@ export function Address() {
                 <Grid item xs={6}>
                     <TextField label={'Email'} />
                 </Grid>
-                <Grid item xs={6}>
-                    <TextField label={'Address Line 1'} />
+                <Grid item xs={12}>
+                    <TextField label={'Address Line 1'} multiline rows={4} />
                 </Grid>
-                <Grid item xs={6}>
+                {/* <Grid item xs={6}>
                     <TextField label={'Address Line 2'} />
                 </Grid>
                 <Grid item xs={6}>
@@ -27,7 +27,7 @@ export function Address() {
                 </Grid>
                 <Grid item xs={6}>
                     <TextField label={'Zip code'} />
-                </Grid>
+                </Grid> */}
             </Grid>
         </Box>
     )

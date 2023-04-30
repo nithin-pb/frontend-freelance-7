@@ -1,7 +1,7 @@
-import { Box, Divider, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
+import { AddNewUser } from '..'
 import { DataGrid } from "../../shared"
-
 import { columDefinition } from "./colum-def";
 
 export default function AdminUser() {
@@ -12,6 +12,7 @@ export default function AdminUser() {
             <DataGrid
                 fixedColumns={columDefinition}
                 gridData={data}
+                extraComponents={<AddNewUser />}
             />
         </Box>
     )

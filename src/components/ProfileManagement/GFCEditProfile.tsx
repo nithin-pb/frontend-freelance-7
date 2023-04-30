@@ -7,7 +7,7 @@ export function GridFrameworkComponentEditProfile(props: any) {
         <Box >
             <Link to={`/dashboard/profile/${props.value}`}>
                 <IconButton size={'small'} sx={{ ml: 1 }} >
-                    <Edit />
+                    <Edit fontSize="small" />
                 </IconButton>
             </Link>
         </Box>
