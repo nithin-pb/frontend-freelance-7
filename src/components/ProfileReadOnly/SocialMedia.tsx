@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
-import { Box, Typography, Divider, Collapse, Paper, IconButton as MuiIconButton, Dialog } from "@mui/material";
-import { Language, LinkedIn, Instagram, Facebook, Twitter, KeyboardArrowDown, Add, Save, DeleteOutline } from "@mui/icons-material"
+import { Box, Typography, Divider, Collapse, IconButton as MuiIconButton, Paper, TextField } from "@mui/material";
+import { Language, Twitter, Instagram, Facebook, LinkedIn, DeleteOutline, KeyboardArrowDown } from "@mui/icons-material";
 
-import { TextField, IconButton, Button } from "../../shared";
-import { AddNewSocialMedia } from "..";
+import { IconButton } from "../../shared";
+import AddNewSocialMedia from "../AddNewSocialMedia";
+
 //@ts-ignore
 import skypeIcon from '../../assets/icons/skype.png'
 
-export function SocialMediaCmpt() {
-
-
+export function SocialMedia() {
     return (
         <Box>
             <Box display={'flex'} alignItems={'center'} gap={2}>
@@ -20,16 +19,9 @@ export function SocialMediaCmpt() {
             </Box>
             <Divider sx={{ mt: 1 }} />
             <SocialMediaAndWebsite />
-            <Box sx={{ mt: 1 }}>
-                <Typography color={'text.secondary'}>
-                    Create new social media from below
-                </Typography>
-                <AddNewSocialMedia />
-            </Box>
         </Box>
     )
 }
-
 
 function SocialMediaAndWebsite() {
     const initialValues = {
@@ -44,20 +36,18 @@ function SocialMediaAndWebsite() {
     return (
         <Box>
             <Box>
-                <SocialMedia icon={<Language sx={{ color: 'red' }} />} name={'Websites'} />
-                <SocialMedia icon={<Twitter sx={{ color: '#008eff' }} />} name={'Twitter'} />
-                <SocialMedia icon={<Instagram sx={{ color: '#ff00db' }} />} name={'Instagram'} />
-                <SocialMedia icon={<Facebook sx={{ color: '#008eff' }} />} name={'Facebook'} />
-                <SocialMedia icon={<LinkedIn sx={{ color: '#007bff' }} />} name={'LinkedIn'} />
-                <SocialMedia icon={<img src={skypeIcon} style={{ width: 16, marginLeft: 2 }} />} name={'Skype'} />
+                <SocialMediaCmt icon={<Language sx={{ color: 'red' }} />} name={'Websites'} />
+                <SocialMediaCmt icon={<Twitter sx={{ color: '#008eff' }} />} name={'Twitter'} />
+                <SocialMediaCmt icon={<Instagram sx={{ color: '#ff00db' }} />} name={'Instagram'} />
+                <SocialMediaCmt icon={<Facebook sx={{ color: '#008eff' }} />} name={'Facebook'} />
+                <SocialMediaCmt icon={<LinkedIn sx={{ color: '#007bff' }} />} name={'LinkedIn'} />
+                <SocialMediaCmt icon={<img src={skypeIcon} style={{ width: 16, marginLeft: 2 }} />} name={'Skype'} />
             </Box>
         </Box>
     )
 }
 
-
-
-function SocialMedia(props: any) {
+function SocialMediaCmt(props: any) {
     const { icon, name, data = [] }: { icon: any, name: string, data: any } = { ...props }
     const [open, setOpen] = useState(false)
     const [socialMedia, setSocialMedia] = useState(data || [])
@@ -113,15 +103,6 @@ function SocialMedia(props: any) {
                             </li>
                         ))}
                     </ul>
-                    <Box display={'flex'} gap={1}>
-                        <Button startIcon={<Save />} size={'small'} sx={{ mt: 1 }}>
-                            Save
-                        </Button>
-                        <Button startIcon={<Add />} size={'small'} sx={{ mt: 1 }} onClick={handleAddButton}>
-                            Add {name}
-                        </Button>
-                    </Box>
-
                 </Paper>
             </Collapse>
         </Box>

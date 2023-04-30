@@ -10,6 +10,8 @@ import { More } from './More'
 import { ProfileImages } from './ProfileImages'
 
 import { Button } from '../../shared'
+import { KeyboardArrowLeft, Update } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 export default function ProfileUpdate() {
     const data = {
@@ -17,7 +19,7 @@ export default function ProfileUpdate() {
     }
     return (
         <Box style={{ height: '100vh', flex: 1, width: 'calc(100vw - 250px)' }}>
-            <TitleWidget title={`Profile Details - ${data?.name || 'unknown profile'}`} description={'Manage individual profile details'} />
+            <TitleWidget title={`Update Profile - ${data?.name || 'unknown profile'}`} description={'Manage individual profile details'} />
             <Box p={2} height={'calc(100vh - 79px)'} overflow={'auto'}>
                 <Formik initialValues={[]} onSubmit={() => { }}>
                     <Form >
@@ -36,10 +38,16 @@ export default function ProfileUpdate() {
                                     <SocialMediaCmpt />
                                 </Box>
                                 <Divider sx={{ mt: 2 }} />
-                                <Box sx={{ py: 2 }}>
-                                    <Button variant={'contained'}>
+                                <Box sx={{ py: 2 }} gap={1} display={'flex'}>
+                                    <Button variant={'contained'} startIcon={<KeyboardArrowLeft />}>
+                                        <Link to={'/dashboard/profile'} style={{ color: 'inherit', textDecoration: 'none' }}>
+                                            Back
+                                        </Link>
+                                    </Button>
+                                    <Button variant={'contained'} startIcon={<Update />}>
                                         Update All Details
                                     </Button>
+
                                 </Box>
                                 <Divider />
 

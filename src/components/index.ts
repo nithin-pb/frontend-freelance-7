@@ -7,6 +7,7 @@ export { default as TitleWidget } from './TitleWidget'
 export { default as Login } from './Login'
 
 export { default as Downloads } from './Downloads'
+export { default as AddNewSocialMedia } from './AddNewSocialMedia'
 
 export { default as AdminUser } from './AdminUser'
 export { default as AddNewUser } from './AddNewUser'
