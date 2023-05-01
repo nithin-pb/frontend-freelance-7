@@ -39,11 +39,11 @@ export default function ProfileUpdate() {
                                 </Box>
                                 <Divider sx={{ mt: 2 }} />
                                 <Box sx={{ py: 2 }} gap={1} display={'flex'}>
-                                    <Button variant={'contained'} startIcon={<KeyboardArrowLeft />}>
-                                        <Link to={'/dashboard/profile'} style={{ color: 'inherit', textDecoration: 'none' }}>
+                                    <Link to={'/dashboard/profile'} style={{ color: 'inherit', textDecoration: 'none' }}>
+                                        <Button variant={'contained'} startIcon={<KeyboardArrowLeft />}>
                                             Back
-                                        </Link>
-                                    </Button>
+                                        </Button>
+                                    </Link>
                                     <Button variant={'contained'} startIcon={<Update />}>
                                         Update All Details
                                     </Button>

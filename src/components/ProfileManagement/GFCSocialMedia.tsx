@@ -10,7 +10,6 @@ export function GridFrameworkComponentSocialMedia(props: IGFCSocialMedia) {
     };
 
     const handlePopoverClose = () => {
-        console.log('test')
         setAnchorEl(null);
     };
 
@@ -33,24 +32,27 @@ export function GridFrameworkComponentSocialMedia(props: IGFCSocialMedia) {
                 }
             </Box>
             <PopOver
+                onMouseEnter={handlePopoverOpen}
                 open={open}
                 anchorEl={anchorEl}
                 onClose={handlePopoverClose}
                 data={value}
                 icon={icon}
             />
-        </Box>
+        </Box >
     )
 }
 
 
 function PopOver(props: IPopOver) {
-    const { open, anchorEl, onClose, data, icon } = { ...props }
+    const { open, anchorEl, onClose, data, icon, onMouseEnter } = { ...props }
     return (
         <Popover
             onMouseLeave={onClose}
+            onMouseEnter={onMouseEnter}
             sx={{
                 pointerEvents: 'none',
+                zIndex: 1000
             }}
             open={open}
             anchorEl={anchorEl}
@@ -65,7 +67,7 @@ function PopOver(props: IPopOver) {
             PaperProps={{
                 elevation: 0,
                 variant: 'outlined',
-                sx: { borderRadius: 2, p: 2 }
+                sx: { borderRadius: 2, p: 2, pt: 1, pb: 1 }
             }}
             onClose={onClose}
             disableRestoreFocus
@@ -102,5 +104,6 @@ interface IPopOver {
     anchorEl: any,
     onClose: any,
     data: any,
-    icon: any
+    icon: any,
+    onMouseEnter?: any
 }

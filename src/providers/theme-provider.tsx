@@ -1,7 +1,7 @@
 import { createTheme, ThemeProvider as MuiProvider, useMediaQuery } from "@mui/material";
 import { useMemo, useState } from "react";
 
-export function ThemeProvider({ children }: { children: any }) {
+export default function ThemeProvider({ children }: { children: any }) {
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
     const [mode, setMode] = useState<'dark' | 'light'>(prefersDarkMode ? 'dark' : 'light')
 

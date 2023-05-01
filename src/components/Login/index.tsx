@@ -1,58 +1,93 @@
+import { Box, Stack, Typography } from '@mui/material'
+import { Link, useNavigate } from 'react-router-dom'
+import { Form, Formik, useFormikContext } from "formik"
+
+import { useAuthentication } from "../../hooks/query"
+import { Button, TextField } from '../../shared'
+
+import { signinValidator } from '../../validations'
 import './index.scss'
-import { Link } from 'react-router-dom'
+import { useAuthorization } from '../../hooks'
 
 
 export default function Login() {
+    const navigate = useNavigate()
+    const { useSignIn } = useAuthentication()
+    const { setAuthorization } = useAuthorization()
+
+    const INITIAL_VALUES = {
+        username: '',
+        password: ''
+    }
+
+    const handleSignIn = async (e: any) => {
+        const params = {}
+        const options = {
+            auth: {
+                username: e.username,
+                password: e.password
+            }
+        }
+        const response = await useSignIn.mutateAsync({ params, options })
+        setAuthorization({
+            authorized: true,
+            accessToken: response?.data?.results?.accessToken
+        })
+        navigate('/dashboard')
+    }
+
+
+
     return (
-        <div className="flex min-h-full items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
-            <Link to={'/signup'}>
-                Siginup
-            </Link>
-            <div className="w-full max-w-md space-y-8">
-                <div>
-                    <img className="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company" />
-                    <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Sign in to your account</h2>
-                    <p className="mt-2 text-center text-sm text-gray-600">
-                        Or
-                        <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">start your 14-day free trial</a>
-                    </p>
-                </div>
-                <form className="mt-8 space-y-6" action="#" method="POST">
-                    <input type="hidden" name="remember" value="true" />
-                    <div className="-space-y-px rounded-md shadow-sm">
-                        <div>
-                            <label className="sr-only">Email address</label>
-                            <input id="email-address" name="email" type="email" required className="relative block w-full rounded-t-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Email address" />
-                        </div>
-                        <div>
-                            <label className="sr-only">Password</label>
-                            <input id="password" name="password" type="password" required className="relative block w-full rounded-b-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Password" />
-                        </div>
-                    </div>
+        <Formik
+            validateOnChange={true}
+            validateOnBlur={true}
+            validationSchema={signinValidator}
+            initialValues={INITIAL_VALUES}
+            onSubmit={handleSignIn}
+        >
+            {({ isValid }) => (
+                <Form>
+                    <Box sx={{ maxWidth: 600, margin: 'auto', display: 'grid', placeItems: 'center' }} height={'100vh'}>
+                        <Stack spacing={2} width={'400px'} >
+                            <Box mb={2}>
+                                <Typography variant='h5'>
+                                    Welcome to Company,
+                                </Typography>
+                                <Typography variant='h5' gutterBottom>
+                                    Sign In to Continue.
+                                </Typography>
 
-                    <div className="flex items-center justify-between">
-                        <div className="flex items-center">
-                            <input id="remember-me" name="remember-me" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
-                            <label className="ml-2 block text-sm text-gray-900">Remember me</label>
-                        </div>
+                                <Typography variant='body2'>
+                                    Don't have an account? <Link to={'/register'}>Create an account</Link>
+                                    <br />It takes less than a minute
+                                </Typography>
+                            </Box>
+                            <TextField label={'Username'} name={'username'} />
+                            <TextField label={'Password'} type={'password'} name={'password'} />
 
-                        <div className="text-sm">
-                            <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">Forgot your password?</a>
-                        </div>
-                    </div>
-
-                    <div>
-                        <button type="submit" className="group relative flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                            <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-                                <svg className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                    <path fill-rule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clip-rule="evenodd" />
-                                </svg>
-                            </span>
-                            Sign in
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
+                            <Box mt={2}>
+                                <Typography sx={{ mb: 4 }} align='center'>
+                                    <Link to={'/forgot'}>
+                                        Forgot password?
+                                    </Link>
+                                </Typography>
+                                <Button
+                                    disabled={!isValid}
+                                    type={'submit'}
+                                    variant={'contained'}
+                                    sx={{ p: 1, width: '100%' }}>
+                                    Sign In
+                                </Button>
+                                <Button variant={'outlined'} sx={{ p: 1, mt: 2, width: '100%' }}>
+                                    Back to Home
+                                </Button>
+                            </Box>
+                        </Stack>
+                    </Box>
+                </Form>
+            )
+            }
+        </Formik>
     )
 }

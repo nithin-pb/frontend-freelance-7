@@ -1,5 +1,6 @@
-import { FormControl, InputBase, InputLabel, Typography } from "@mui/material";
+import { FormControl, InputBase, InputBaseProps, InputLabel, Typography } from "@mui/material";
 import { alpha, styled } from '@mui/material/styles';
+import { useField } from "formik";
 
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
     'label + &': {
@@ -27,7 +28,21 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 
 
 export default function TextField(props: ITextField | any) {
-    const { label = '', ...otherProps } = { ...props }
+    const { label = '', name = null, helperText = null, ignoreFormik = false, ...otherProps } = { ...props }
+
+    const [field, meta] = useField(name || label);
+
+    const configTextField = {
+        error: false,
+        helperText: helperText || ''
+    };
+
+    if (meta && meta.touched && meta.error) {
+        configTextField.error = true;
+        configTextField.helperText = meta.error;
+    }
+
+
     return (
         <FormControl fullWidth>
             <InputLabel shrink htmlFor={`${label.replaceAll(' ', '')}`} sx={{ ml: -1.5 }}>
@@ -35,14 +50,22 @@ export default function TextField(props: ITextField | any) {
                     {label}
                 </Typography>
             </InputLabel>
-            <BootstrapInput fullWidth {...otherProps} id={`${label.replaceAll(' ', '')}`} />
+            {
+                ignoreFormik ?
+                    <BootstrapInput fullWidth  {...otherProps} id={`${label.replaceAll(' ', '')}`} /> :
+                    <BootstrapInput fullWidth {...field} {...otherProps} id={`${label.replaceAll(' ', '')}`} />
+            }
+
         </FormControl>
 
     )
 }
 
-interface ITextField {
+interface ITextField extends InputBaseProps {
     label: string,
     value?: any,
-    type?: string
+    type?: string,
+    name?: string,
+    helperText?: string,
+    ignoreFormik?: boolean
 }

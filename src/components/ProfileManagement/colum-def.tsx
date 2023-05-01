@@ -12,7 +12,7 @@ export const columDefinition = [
     {
         checkboxSelection: true,
         headerName: '',
-        field: 'id',
+        field: 'user_name',
         width: 50,
         headerCheckboxSelection: true,
         cellRendererFramework: function GFC(props: any) {
@@ -22,14 +22,14 @@ export const columDefinition = [
     },
     {
         headerName: '',
-        field: 'id',
+        field: 'user_name',
         width: 45,
         cellRendererFramework: GridFrameworkComponentEditProfile,
         cellStyle: { padding: 0, border: 'none' }
     },
     {
         headerName: '',
-        field: 'id',
+        field: 'user_name',
         width: 45,
         cellRendererFramework: GridFrameworkComponentDeleteProfile,
         cellStyle: { padding: 0, border: 'none' }
@@ -40,7 +40,8 @@ export const columDefinition = [
         cellRendererFramework: GridFrameworkComponentProfileName
     },
     {
-        field: 'companyName',
+        headerName: 'Company Name',
+        field: 'company_name',
         flex: 1
     },
     {

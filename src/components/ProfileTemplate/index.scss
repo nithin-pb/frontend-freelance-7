@@ -1,6 +1,6 @@
 .ProfileTemplate-Wrapper {
     .template-individual {
-        min-height: 300px;
+        //min-height: 300px;
         position: relative;
         cursor: pointer;
     }
@@ -10,12 +10,12 @@
         padding-bottom: 8px;
         left: 0;
         right: 0;
-        position: absolute;
+        //position: absolute;
         background: white;
     }
 
     .template-title {
-        position: absolute;
+        //position: absolute;
         background: linear-gradient(180deg, white, transparent);
         background: white;
         left: 0;
