@@ -1,5 +1,6 @@
 import { Box, Grid } from "@mui/material";
 
+import { useProfile } from "../../hooks/query";
 import { TitleWidget } from "..";
 import { Personal } from './Personal'
 import { Contact } from './Contact'
@@ -8,8 +9,23 @@ import { ProfileImages } from './ProfileImages'
 import { Template } from './Template'
 import { Preview } from "./Preview";
 import { SocialMedia } from "./SocialMedia";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 export default function ProfileReadOnly(props: any) {
+    const { useListProfileByEmail } = useProfile()
+    const { id } = useParams()
+
+    useEffect(() => {
+        const fetchResult = async () => {
+            const response = await useListProfileByEmail.mutateAsync(id)
+        }
+
+        if (id) {
+            fetchResult().then()
+        }
+
+    }, [])
     return (
         <Box style={{ height: '100vh', flex: 1, width: 'calc(100vw - 250px)' }}>
             <TitleWidget title={`${props.data?.name || 'Unknown Profile'}`} description={'Profile details and associations'} />

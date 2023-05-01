@@ -15,14 +15,19 @@ const useProfile = () => {
     const useCreateSocialMedia = useMutation(
         (params: any) => axiosPrivate.post(apiEndPoint.socialMedia.create, params)
             .then((e: any) => e?.data?.data))
-    const useListProfile = useQuery(['profileList'],
+
+    const useListProfile = () => useQuery(['profileList'],
         (params: any) => axiosPrivate.get(apiEndPoint.profile.list, params)
             .then((e: any) => e?.data?.data))
 
+    const useListProfileByEmail = useMutation(
+        (email: any) => axiosPrivate.get(`${apiEndPoint.profile.list}/${email}`)
+            .then((e: any) => e?.data?.data))
     return {
         useCreateProfile,
         useCreateSocialMedia,
-        useListProfile
+        useListProfile,
+        useListProfileByEmail,
     }
 }
 

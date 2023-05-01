@@ -8,7 +8,7 @@ import { columDefinition } from './colum-def'
 
 export default function ProfileManagement() {
     const { useListProfile } = useProfile()
-    const { isLoading, data, isError, error } = useListProfile
+    const { isLoading, data, isError, error } = useListProfile()
 
 
     return (
