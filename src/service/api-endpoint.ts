@@ -4,7 +4,9 @@ export const apiEndPoint = {
     profile: {
         list: 'listProfiles',
         create: 'createProfile',
-        listByUsername: 'viewProfiles'
+        listByUsername: 'viewProfiles',
+        upload: 'uploadImageToStorage',
+        update: 'updateProfile'
     },
     socialMedia: {
         create: 'createSocialMediaProfile'

@@ -18,8 +18,10 @@ const socialMediaInitialValues = {
 
 export function BasicForm(props: any) {
     const { onClose }: { onClose: any } = { ...props }
-    const { useCreateProfile, useCreateSocialMedia } = useProfile()
+    const { useCreateProfile, useCreateSocialMedia, useCreateProfileUpload } = useProfile()
     const [socialMedia, setSocialMedia] = useState(socialMediaInitialValues)
+    const [logoImage, setLogoImage] = useState(new Blob())
+    const [profileImage, setProfileImage] = useState(new Blob())
 
 
 
@@ -37,6 +39,17 @@ export function BasicForm(props: any) {
     }
 
 
+    const handleImageStateUpdate = (e: any) => {
+        console.log(e.currentTarget.files, e.currentTarget.id, e.currentTarget.name)
+        if (e.target.id === 'Logo') {
+            setLogoImage(e.target.files[0])
+        }
+
+        if (e.target.id === 'Picture') {
+            setProfileImage(e.target.files[0])
+        }
+    }
+
     const handleFormSubmit = async (e: any) => {
         const params = { ...e, invite: '', refferdBy: 'test' }
         const response = await useCreateProfile.mutateAsync(params)
@@ -46,6 +59,14 @@ export function BasicForm(props: any) {
             return acc
         }, { email: e.email, socialMedias: {} })
         const socialMediaResponse = await useCreateSocialMedia.mutateAsync(sParams)
+
+        for (const item of ['logo', 'image']) {
+            const formData = new FormData()
+            formData.append('files', item === 'logo' ? logoImage : profileImage)
+            formData.append('userName', response.userName)
+            formData.append('imageType', item === 'logo' ? 'Logo' : 'Image')
+            const imageUploadResult = await useCreateProfileUpload.mutateAsync(formData)
+        }
     }
 
 
@@ -88,11 +109,11 @@ export function BasicForm(props: any) {
                                     <TextField name={'bio'} label={'Bio'} multiline rows={3} />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <TextField name={'logo'} label={'Logo'} type={'file'} ignoreFormik />
+                                    <TextField name={'logo'} label={'Logo'} type={'file'} ignoreFormik onChange={handleImageStateUpdate} />
                                 </Grid>
                                 <Grid item xs={12}>
 
-                                    <TextField name={'picture'} label={'Picture'} type={'file'} ignoreFormik />
+                                    <TextField name={'profilePic'} label={'Picture'} type={'file'} ignoreFormik onChange={handleImageStateUpdate} />
                                 </Grid>
 
                             </Grid>

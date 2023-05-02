@@ -40,12 +40,32 @@ const INITIAL_VALUES = {
 
 export default function ProfileUpdate() {
     const [socialMediaState, setSocialMediaState] = useState({})
+    const { useUpdateProfile } = useProfile()
     const [socialMediaList, setSocialMediaList] = useState([])
     const [formValue, setFormValue] = useState(INITIAL_VALUES)
 
     const { useListProfileByUsername } = useProfile()
     const { isSuccess, data, isError, error, isLoading } = useListProfileByUsername
     const { id } = useParams()
+
+
+
+    const handleUpdate = async (e: any) => {
+        const params = {
+            "name": e.name,
+            "phone": e.phone,
+            "email": e.email,
+            "address": e.address,
+            "companyName": e.company_name,
+            "designation": e.designation,
+            "websites": e.websites,
+            "bio": e.bio,
+            "invite": e.invite,
+            "refferdBy": e.refferdBy,
+            "userName": e.params
+        }
+        const response = await useUpdateProfile.mutateAsync(params)
+    }
 
     useEffect(() => {
         const fetchResult = async () => {
@@ -75,7 +95,7 @@ export default function ProfileUpdate() {
         <Box style={{ height: '100vh', flex: 1, width: 'calc(100vw - 250px)' }}>
             <TitleWidget title={`Update Profile - ${id || 'unknown profile'}`} description={'Manage individual profile details'} />
             <Box p={2} height={'calc(100vh - 79px)'} overflow={'auto'}>
-                <Formik initialValues={formValue} onSubmit={() => { }} enableReinitialize={true}>
+                <Formik initialValues={formValue} onSubmit={handleUpdate} enableReinitialize={true}>
                     <Form >
                         <Grid container style={{ maxWidth: 1000 }} spacing={3}>
                             <Grid item md={6}>
@@ -98,7 +118,7 @@ export default function ProfileUpdate() {
                                             Back
                                         </Button>
                                     </Link>
-                                    <Button variant={'contained'} startIcon={<Update />}>
+                                    <Button variant={'contained'} startIcon={<Update />} type={'submit'}>
                                         Update All Details
                                     </Button>
                                 </Box>
