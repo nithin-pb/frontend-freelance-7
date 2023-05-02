@@ -83,7 +83,6 @@ export default function ProfileUpdate() {
         }, { userName: e.user_name, socialMedias: {} })
 
         const socialMediaResponse = await useCreateSocialMedia.mutateAsync(sParams)
-
     }
 
     useEffect(() => {

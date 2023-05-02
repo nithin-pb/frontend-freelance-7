@@ -10,30 +10,30 @@ const useProfile = () => {
 
     const useCreateProfile = useMutation(
         (params: any) => axios.post(apiEndPoint.profile.create, params)
-            .then((e: any) => e?.data?.results)
+            .then((e: any) => e?.data?.result)
     )
 
     const useCreateProfileUpload = useMutation(
         (params: any) => axios.post(apiEndPoint.profile.upload, params)
-            .then((e: any) => e?.data?.results)
+            .then((e: any) => e?.data?.result)
     )
 
 
     const useCreateSocialMedia = useMutation(
         (params: any) => axiosPrivate.post(apiEndPoint.socialMedia.create, params)
-            .then((e: any) => e?.data?.results))
+            .then((e: any) => e?.data?.result))
 
     const useListProfile = () => useQuery(['profileList'],
         (params: any) => axiosPrivate.get(apiEndPoint.profile.list, params)
-            .then((e: any) => e?.data?.results))
+            .then((e: any) => e?.data?.result))
 
     const useListProfileByUsername = useMutation(
         (username: any) => axiosPrivate.get(`${apiEndPoint.profile.listByUsername}/${username}`)
-            .then((e: any) => e?.data?.results))
+            .then((e: any) => e?.data?.result))
 
     const useUpdateProfile = useMutation(
         (params: any) => axiosPrivate.post(`${apiEndPoint.profile.update}`, params)
-            .then((e: any) => e?.data?.results))
+            .then((e: any) => e?.data?.result))
 
     return {
         useCreateProfile,

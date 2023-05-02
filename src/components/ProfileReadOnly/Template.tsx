@@ -1,9 +1,10 @@
 import { Box, Divider, Grid, Typography } from "@mui/material";
-
+import { useProfileTheme } from "../../hooks";
 
 export function Template(props: any) {
     //@ts-ignore
     const { data } = { ...props }
+    const { activeTheme } = useProfileTheme()
     return (
         <Box>
             <Typography>
@@ -11,7 +12,7 @@ export function Template(props: any) {
             </Typography>
             <Divider sx={{ mt: 1 }} />
             <Grid container spacing={2} sx={{ mt: 0.5 }}>
-                <Property name={'Active Profile Template'} value={data?.active_template} />
+                <Property name={'Active Profile Template'} value={activeTheme || data?.active_template || 'Earth'} />
             </Grid>
         </Box>
     )

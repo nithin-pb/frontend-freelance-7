@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Box, Typography, IconButton, Dialog, DialogTitle, Divider } from "@mui/material"
 import { Edit, CloseOutlined } from "@mui/icons-material"
+import { useProfileTheme } from "../../hooks"
 
 import { ProfileTemplate } from '..'
 
@@ -8,6 +9,7 @@ export function Template(props: any) {
     //@ts-ignore
     const { data } = { ...props }
     const [open, setOpen] = useState(false)
+    const { activeTheme } = useProfileTheme()
 
     const handleToggle = () => {
         setOpen((e: boolean) => !e)
@@ -20,7 +22,7 @@ export function Template(props: any) {
                     Active Profile Template
                 </Typography>
                 <Typography sx={{ fontWeight: 600 }} variant={'h6'} component={'div'}>
-                    {data?.active_profile}
+                    {activeTheme || data?.active_profile || 'Earth'}
                 </Typography>
             </Box>
             <IconButton sx={{ ml: 1 }} onClick={handleToggle}>
