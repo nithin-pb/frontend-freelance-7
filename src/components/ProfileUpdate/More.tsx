@@ -25,6 +25,15 @@ export function More(props: any) {
                     />
                 </Grid>
                 <Grid item xs={12}>
+                    <TextField label={'Unique Id'} name={"uniqueId"} disabled />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField label={'URL'} name={"url"} disabled />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField label={'Invite'} name={"invite"} />
+                </Grid>
+                <Grid item xs={12}>
                     <TextField label={'Profile Referred By'} name={"refferdBy"} />
                 </Grid>
                 <Grid item xs={12}>

@@ -57,7 +57,7 @@ export function BasicForm(props: any) {
         const sParams = Object.entries(socialMedia).reduce((acc: any, curr: any) => {
             acc['socialMedias'][curr[0]] = curr[1].map((e: any) => e.name)
             return acc
-        }, { email: e.email, socialMedias: {} })
+        }, { userName: response.userName, socialMedias: {} })
         const socialMediaResponse = await useCreateSocialMedia.mutateAsync(sParams)
 
         for (const item of ['logo', 'image']) {

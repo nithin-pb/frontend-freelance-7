@@ -36,11 +36,22 @@ const INITIAL_VALUES = {
     "createdAt": "",
     "updatedBy": "",
     "qrCode": "",
+    "uniqueId": '',
+    "url": ''
+}
+
+const socialMediaInitialValues = {
+    Websites: [],
+    Twitter: [],
+    Instagram: [],
+    Facebook: [],
+    LinkedIn: [],
+    Skype: [],
 }
 
 export default function ProfileUpdate() {
-    const [socialMediaState, setSocialMediaState] = useState({})
-    const { useUpdateProfile } = useProfile()
+    const [socialMediaState, setSocialMediaState] = useState(socialMediaInitialValues)
+    const { useUpdateProfile, useCreateSocialMedia } = useProfile()
     const [socialMediaList, setSocialMediaList] = useState([])
     const [formValue, setFormValue] = useState(INITIAL_VALUES)
 
@@ -62,9 +73,17 @@ export default function ProfileUpdate() {
             "bio": e.bio,
             "invite": e.invite,
             "refferdBy": e.refferdBy,
-            "userName": e.params
+            "userName": e.user_name,
         }
         const response = await useUpdateProfile.mutateAsync(params)
+
+        const sParams = Object.entries(socialMediaState).reduce((acc: any, curr: any) => {
+            acc['socialMedias'][curr[0]] = curr[1].map((e: any) => e.name)
+            return acc
+        }, { userName: e.user_name, socialMedias: {} })
+
+        const socialMediaResponse = await useCreateSocialMedia.mutateAsync(sParams)
+
     }
 
     useEffect(() => {
@@ -79,7 +98,7 @@ export default function ProfileUpdate() {
                 }))
                 acc[curr['media_name']] = ids
                 return acc
-            }, {})
+            }, socialMediaInitialValues)
             setSocialMediaState(ssmd)
 
         }

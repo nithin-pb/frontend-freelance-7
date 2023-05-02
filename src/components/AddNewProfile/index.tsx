@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Box, Divider, Grid, Typography } from "@mui/material";
+import { Box, Grid, } from "@mui/material";
 import { Add } from "@mui/icons-material";
 
 import { BasicForm } from "./Form";
-import { Button, Dialog, TextField } from "../../shared";
+import { Button, Dialog } from "../../shared";
 
 export default function AddNewProfile() {
     const [socialMediaCreate, setSocialMediaCreate] = useState(false)
