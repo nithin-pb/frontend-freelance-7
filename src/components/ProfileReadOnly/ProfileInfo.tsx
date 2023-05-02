@@ -1,7 +1,10 @@
 import { Box, Divider, Grid, Typography } from "@mui/material";
 
 
-export function ProfileInfo() {
+export function ProfileInfo(props: any) {
+    //@ts-ignore
+    const { data } = { ...props }
+
     return (
         <Box>
             <Typography>
@@ -9,11 +12,11 @@ export function ProfileInfo() {
             </Typography>
             <Divider sx={{ mt: 1 }} />
             <Grid container spacing={2} sx={{ mt: 0.5 }}>
-                <Property name={'Bio'} value={'n publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum m…'} />
-                <Property name={'Username'} value={'randomfishjumps'} />
+                <Property name={'Bio'} value={data?.bio} />
+                <Property name={'Username'} value={data?.user_name} />
                 <Property name={'Password'} value={'****************'} />
-                <Property name={'Profile Referred By'} value={'Jane Doe'} />
-                <Property name={'Profile Created By'} value={'Jane Doe'} />
+                <Property name={'Profile Referred By'} value={data?.refferdBy} />
+                <Property name={'Profile Created By'} value={data?.createdBy} />
             </Grid>
         </Box>
     )

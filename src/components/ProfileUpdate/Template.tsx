@@ -4,7 +4,9 @@ import { Edit, CloseOutlined } from "@mui/icons-material"
 
 import { ProfileTemplate } from '..'
 
-export function Template() {
+export function Template(props: any) {
+    //@ts-ignore
+    const { data } = { ...props }
     const [open, setOpen] = useState(false)
 
     const handleToggle = () => {
@@ -18,7 +20,7 @@ export function Template() {
                     Active Profile Template
                 </Typography>
                 <Typography sx={{ fontWeight: 600 }} variant={'h6'} component={'div'}>
-                    CoolJazz
+                    {data?.active_profile}
                 </Typography>
             </Box>
             <IconButton sx={{ ml: 1 }} onClick={handleToggle}>

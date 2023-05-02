@@ -1,7 +1,9 @@
 import { Box, Divider, Grid, Typography } from "@mui/material";
 
 
-export function Personal() {
+export function Personal(props: any) {
+    //@ts-ignore
+    const { data } = { ...props }
     return (
         <Box>
             <Typography>
@@ -9,9 +11,9 @@ export function Personal() {
             </Typography>
             <Divider sx={{ mt: 1 }} />
             <Grid container spacing={2} sx={{ mt: 0.5 }}>
-                <Property name={'Name'} value={'Test Profile'} />
-                <Property name={'Company Name'} value={'Amazon'} />
-                <Property name={'Designation'} value={'Software Engineer'} />
+                <Property name={'Name'} value={data?.name} />
+                <Property name={'Company Name'} value={data?.company_name} />
+                <Property name={'Designation'} value={data?.designation} />
             </Grid>
         </Box>
     )

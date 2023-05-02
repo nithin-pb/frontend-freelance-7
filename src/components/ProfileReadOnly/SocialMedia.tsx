@@ -8,7 +8,10 @@ import AddNewSocialMedia from "../AddNewSocialMedia";
 //@ts-ignore
 import skypeIcon from '../../assets/icons/skype.png'
 
-export function SocialMedia() {
+export function SocialMedia(props: any) {
+    //@ts-ignore
+    const { data } = { ...props }
+
     return (
         <Box>
             <Box display={'flex'} alignItems={'center'} gap={2}>

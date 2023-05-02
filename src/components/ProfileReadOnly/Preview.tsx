@@ -1,7 +1,10 @@
 import { Box, Divider, Typography } from "@mui/material";
 import { ProfileTemplateWidget } from "..";
 
-export function Preview() {
+export function Preview(props: any) {
+    //@ts-ignore
+    const { data } = { ...props }
+
     return (
         <Box sx={{ mt: 3 }}>
             <Typography>

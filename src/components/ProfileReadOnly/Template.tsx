@@ -1,7 +1,9 @@
 import { Box, Divider, Grid, Typography } from "@mui/material";
 
 
-export function Template() {
+export function Template(props: any) {
+    //@ts-ignore
+    const { data } = { ...props }
     return (
         <Box>
             <Typography>
@@ -9,7 +11,7 @@ export function Template() {
             </Typography>
             <Divider sx={{ mt: 1 }} />
             <Grid container spacing={2} sx={{ mt: 0.5 }}>
-                <Property name={'Active Profile Template'} value={'CoolJazz'} />
+                <Property name={'Active Profile Template'} value={data?.active_template} />
             </Grid>
         </Box>
     )

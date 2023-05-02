@@ -1,7 +1,10 @@
 import { Box, Divider, Grid, Typography } from "@mui/material";
 
 
-export function Contact() {
+export function Contact(props: any) {
+    //@ts-ignore
+    const { data } = { ...props }
+
     return (
         <Box>
             <Typography>
@@ -9,9 +12,9 @@ export function Contact() {
             </Typography>
             <Divider sx={{ mt: 1 }} />
             <Grid container spacing={2} sx={{ mt: 0.5 }}>
-                <Property name={'Phone'} value={'98545222452'} gridProperty={6} />
-                <Property name={'Email'} value={'test@testmeila.com'} gridProperty={6} />
-                <Property name={'Address'} value={'Test Address\n test street \n test state, 685523'} />
+                <Property name={'Phone'} value={data?.phone} gridProperty={6} />
+                <Property name={'Email'} value={data?.email} gridProperty={6} />
+                <Property name={'Address'} value={data?.address} />
             </Grid>
         </Box>
     )

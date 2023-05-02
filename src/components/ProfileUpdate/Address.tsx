@@ -11,13 +11,13 @@ export function Address() {
             <Divider sx={{ mt: 1 }} />
             <Grid container spacing={3} sx={{ mt: 0.5 }}>
                 <Grid item xs={6}>
-                    <TextField label={'Phone'} />
+                    <TextField label={'Phone'} name={"phone"} />
                 </Grid>
                 <Grid item xs={6}>
-                    <TextField label={'Email'} />
+                    <TextField label={'Email'} name={"email"} />
                 </Grid>
                 <Grid item xs={12}>
-                    <TextField label={'Address Line'} multiline rows={4} />
+                    <TextField label={'Address Line'} multiline rows={4} name={"company_name"} />
                 </Grid>
                 {/* <Grid item xs={6}>
                     <TextField label={'Address Line 2'} />

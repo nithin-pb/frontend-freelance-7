@@ -16,7 +16,6 @@ export const columDefinition = [
         width: 50,
         headerCheckboxSelection: true,
         cellRendererFramework: function GFC(props: any) {
-            console.log(props)
             return null
         }
     },
@@ -40,6 +39,11 @@ export const columDefinition = [
         cellRendererFramework: GridFrameworkComponentProfileName
     },
     {
+        headerName: 'Username',
+        field: 'user_name',
+        flex: 1
+    },
+    {
         headerName: 'Company Name',
         field: 'company_name',
         flex: 1
@@ -53,57 +57,66 @@ export const columDefinition = [
         flex: 1
     },
     {
-        field: 'websites',
-        width: '120px',
-        cellRendererFramework: function GFC(props: any) {
-            return (
-                <GridFrameworkComponentSocialMedia icon={<Language />} value={props.value} />
-            )
-        }
+        field: 'designation',
+        flex: 1
     },
     {
-        field: 'linkedIn',
-        width: 120,
-        cellRendererFramework: function GFC(props: any) {
-            return (
-                <GridFrameworkComponentSocialMedia icon={<LinkedIn />} value={props.value} />
-            )
-        }
-    },
-    {
-        field: 'skype',
-        width: 100,
-        cellRendererFramework: function GFC(props: any) {
-            return (
-                <GridFrameworkComponentSocialMedia icon={<img style={{ width: 17 }} src={skypeIcon} alt={'skype icon'} />} value={props.value} />
-            )
-        }
-    },
-    {
-        field: 'instagram',
-        width: 120,
-        cellRendererFramework: function GFC(props: any) {
-            return (
-                <GridFrameworkComponentSocialMedia icon={<Instagram />} value={props.value} />
-            )
-        }
-    },
-    {
-        field: 'facebook',
-        width: 120,
-        cellRendererFramework: function GFC(props: any) {
-            return (
-                <GridFrameworkComponentSocialMedia icon={<Facebook />} value={props.value} />
-            )
-        }
-    },
-    {
-        field: 'twitter',
-        width: 120,
-        cellRendererFramework: function GFC(props: any) {
-            return (
-                <GridFrameworkComponentSocialMedia icon={<Twitter />} value={props.value} />
-            )
-        }
+        headerName: 'Referred By',
+        field: 'refferdBy',
+        flex: 1
     }
+    // {
+    //     field: 'websites',
+    //     width: '120px',
+    //     cellRendererFramework: function GFC(props: any) {
+    //         return (
+    //             <GridFrameworkComponentSocialMedia icon={<Language />} value={props.value} />
+    //         )
+    //     }
+    // },
+    // {
+    //     field: 'linkedIn',
+    //     width: 120,
+    //     cellRendererFramework: function GFC(props: any) {
+    //         return (
+    //             <GridFrameworkComponentSocialMedia icon={<LinkedIn />} value={props.value} />
+    //         )
+    //     }
+    // },
+    // {
+    //     field: 'skype',
+    //     width: 100,
+    //     cellRendererFramework: function GFC(props: any) {
+    //         return (
+    //             <GridFrameworkComponentSocialMedia icon={<img style={{ width: 17 }} src={skypeIcon} alt={'skype icon'} />} value={props.value} />
+    //         )
+    //     }
+    // },
+    // {
+    //     field: 'instagram',
+    //     width: 120,
+    //     cellRendererFramework: function GFC(props: any) {
+    //         return (
+    //             <GridFrameworkComponentSocialMedia icon={<Instagram />} value={props.value} />
+    //         )
+    //     }
+    // },
+    // {
+    //     field: 'facebook',
+    //     width: 120,
+    //     cellRendererFramework: function GFC(props: any) {
+    //         return (
+    //             <GridFrameworkComponentSocialMedia icon={<Facebook />} value={props.value} />
+    //         )
+    //     }
+    // },
+    // {
+    //     field: 'twitter',
+    //     width: 120,
+    //     cellRendererFramework: function GFC(props: any) {
+    //         return (
+    //             <GridFrameworkComponentSocialMedia icon={<Twitter />} value={props.value} />
+    //         )
+    //     }
+    // }
 ]

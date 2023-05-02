@@ -3,7 +3,8 @@ export const apiEndPoint = {
     logout: '/logout',
     profile: {
         list: 'listProfiles',
-        create: 'createProfile'
+        create: 'createProfile',
+        listByUsername: 'viewProfiles'
     },
     socialMedia: {
         create: 'createSocialMediaProfile'
