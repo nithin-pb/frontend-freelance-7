@@ -30,6 +30,14 @@
     }
 }
 
+.row-disabled {
+    background-color: rgb(228, 228, 228);
+    color: rgb(146, 146, 146) !important;
+
+    a {
+        color: rgb(146, 146, 146) !important;
+    }
+}
 // // custom override styles by nithin
 
 // .ag-header-cell-text {
@@ -126,6 +134,7 @@
     //border-radius: 10px;
     margin-left: 20px;
     margin: 16px 0px;
+    width: 100%;
 
     input {
         outline: none;
@@ -134,11 +143,19 @@
         padding-left: 8px;
         flex: 1;
         font-family: var(--font-family);
+        width: 100%;
 
         &::placeholder {
             font-weight: 500;
             font-family: var(--font-family);
         }
+    }
+}
+
+.grid-wrapper-main {
+    nav {
+        height: auto;
+        border-right: 0;
     }
 }
 

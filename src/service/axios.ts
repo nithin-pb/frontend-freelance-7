@@ -1,7 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = 'http://localhost:8000'
-//const BASE_URL = 'https://demo.finthesys.com/v2/api'
+const BASE_URL = 'https://api.engage.nithinpb.com/api'
 
 export default axios.create({
     baseURL: BASE_URL,

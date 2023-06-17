@@ -20,14 +20,14 @@ nav {
                 transition: 0.3s;
 
                 &:hover {
-                    background-color: #9900ff0a;
+                    background-color: #ff510014;
                 }
             }
 
             .active {
-                background: #9b00ff14;
+                background: #ff510014;
                 transition: 0.3s;
-                color: #9b00ff;
+                color: var(--primary);
             }
         }
     }
@@ -39,7 +39,7 @@ nav {
         display: flex;
         align-items: center;
         font-weight: 700;
-        color: #9b00ff;
+        color: var(--primary);
         //border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     }
 }

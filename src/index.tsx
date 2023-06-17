@@ -10,12 +10,12 @@ const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 root.render(
-    <React.StrictMode>
-        <ErrorBoundary>
-            <GlobalProvider>
-                <MainLayout />
-            </GlobalProvider>
-        </ErrorBoundary>
-    </React.StrictMode>
+    // <React.StrictMode>
+    <ErrorBoundary>
+        <GlobalProvider>
+            <MainLayout />
+        </GlobalProvider>
+    </ErrorBoundary>
+    // </React.StrictMode>
 );
 

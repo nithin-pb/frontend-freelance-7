@@ -38,19 +38,10 @@ export default function AddNewSocialMedia(props: any) {
                     onSubmit={handleSubmit}>
                     <Form>
                         <Grid container>
-                            <Grid item xs={12}>
-                                <Typography>
-                                    Name the social media
-                                </Typography>
-                                <TextField label={''} name={'socialMedia'} />
-                                {/* <Divider sx={{ mt: 3, mb: 2 }} />
-                        <Box>
-                            <Typography >
-                                Provide links to the social media
-                            </Typography>
-                            <NewSocialMediaValues />
-                        </Box> */}
+                            <Grid item xs={12} sx={{ mt: 1 }}>
+                                <TextField label={'Name the social media'} name={'socialMedia'} autoComplete={"off"} />
                                 <Divider sx={{ ml: -2, mr: -2, mt: 3 }} />
+                                <NewSocialMediaValues />
                                 <Box mt={2} display={'flex'} justifyContent={'flex-end'} gap={1}>
                                     <Button variant={'contained'} type={'submit'}>
                                         Add

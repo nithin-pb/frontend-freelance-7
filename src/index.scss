@@ -1,5 +1,5 @@
 :root {
-    --primary: #9b00ff;
+    --primary: #ff5000;
     --secondary: orange;
     --font-color-1: #000;
     --primary-color: var(--primary);
@@ -29,4 +29,56 @@ code {
     background-color: rgb(243, 243, 243);
     padding: 4px 8px;
     border-radius: 4px;
+}
+
+.react-tel-input {
+    margin-top: 16px;
+    font-family: var(--font-family);
+
+    .form-control {
+        border-radius: 9px;
+        height: 38px;
+        padding: 8px 12px;
+        padding-left: 46px;
+        border: 1px solid #ced4da;
+        background-color: #fcfcfb;
+        font-size: 14px;
+    }
+
+    .country-list {
+        z-index: 10;
+        border: 0px 0 8px 8px;
+        overflow: auto;
+        background-color: #fcfcfb;
+        border: 1px solid #ced4da;
+        border-top: none;
+        margin-top: 1px;
+    }
+    .flag-dropdown {
+        border-radius: 9px 0 0 9px;
+    }
+
+    .flag-dropdown.open .selected-flag {
+        border-radius: 9px 0 0 9px;
+        background-color: #fcfcfb;
+    }
+    .selected-flag {
+        border-radius: 9px 0 0 9px;
+        background-color: #fcfcfb;
+    }
+}
+
+input[type='file']::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: var(--primary);
+    padding: 2px 8px;
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+}
+
+input[type='file']::file-selector-button:hover {
+    background: var(--primary);
 }

@@ -1,20 +1,20 @@
 import { AlertTitle, Alert as MuiAlert } from "@mui/material";
-
+import { apiErrorResponse } from '../../utilities'
 
 export default function Alert(props: IAlertProps) {
-    const { isSuccess, isError, successMessage, errorMessage, error } = { ...props }
+    const { isSuccess, isError, successMessage, error } = { ...props }
     if (isError) {
         return (
-            <MuiAlert severity="error">
-                <AlertTitle>Error</AlertTitle>
-                {errorMessage?.message || 'unknown error'}
+            <MuiAlert severity="error" sx={{ borderRadius: 2 }}>
+                <AlertTitle>{apiErrorResponse(error).error || 'ERROR'}</AlertTitle>
+                {apiErrorResponse(error).error || 'unknown error'}
             </MuiAlert>
         )
     }
 
     if (isSuccess) {
         return (
-            <MuiAlert severity="success">
+            <MuiAlert severity="success" sx={{ borderRadius: 2 }}>
                 <AlertTitle>Error</AlertTitle>
                 {successMessage}
             </MuiAlert>
@@ -30,6 +30,5 @@ interface IAlertProps {
     isSuccess?: boolean,
     isError?: boolean,
     successMessage?: string,
-    errorMessage?: any,
     error?: any
 }

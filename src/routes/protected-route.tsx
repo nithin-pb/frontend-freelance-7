@@ -6,7 +6,7 @@ export function ProtectedRoute(props: IProtectedRoute) {
     const location = useLocation();
     const { authorization } = useAuthorization()
     const { authorized, accessToken } = authorization
-    const loginRedirect = !authorized || !accessToken
+    const loginRedirect = !authorized && !accessToken
     if (loginRedirect) {
         return (
             <Navigate

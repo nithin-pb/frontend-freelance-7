@@ -6,5 +6,7 @@ export default interface IDataGrid {
     height?: string | number,
     disableTopToolBox?: boolean,
     extraComponents?: any,
-    rowSelection?: 'single' | 'multiple'
+    rowSelection?: 'single' | 'multiple',
+    loading?: boolean,
+    rowClassRules?: any
 }

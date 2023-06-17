@@ -1,6 +1,9 @@
 import { FormControl, InputBase, InputBaseProps, InputLabel, Typography } from "@mui/material";
 import { alpha, styled } from '@mui/material/styles';
 import { useField } from "formik";
+import PhoneInput from 'react-phone-input-2'
+
+import 'react-phone-input-2/lib/semantic-ui.css'
 
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
     'label + &': {
@@ -55,7 +58,45 @@ export default function TextField(props: ITextField | any) {
                     <BootstrapInput fullWidth  {...otherProps} id={`${label.replaceAll(' ', '')}`} /> :
                     <BootstrapInput fullWidth {...field} {...otherProps} id={`${label.replaceAll(' ', '')}`} />
             }
+            {
+                configTextField.helperText &&
+                <Typography>
+                    {configTextField.helperText}
+                </Typography>
+            }
+        </FormControl>
 
+    )
+}
+
+export function PhoneInputLocal(props: any) {
+    const { label = '', name = null, helperText = null, ignoreFormik = false, ...otherProps } = { ...props }
+
+    const [field, meta] = useField(name || label);
+
+    const configTextField = {
+        error: false,
+        helperText: helperText || ''
+    };
+
+    if (meta && meta.touched && meta.error) {
+        configTextField.error = true;
+        configTextField.helperText = meta.error;
+    }
+
+    return (
+        <FormControl fullWidth>
+            <InputLabel shrink htmlFor={`${label.replaceAll(' ', '')}`} sx={{ ml: -1.5 }}>
+                <Typography variant="body1" sx={{ fontSize: 16 }}>
+                    {label}
+                </Typography>
+            </InputLabel>
+            <PhoneInput
+                country={'in'}
+                inputProps={{ name: 'phone', style: { width: '100%', marginTop: 8 } }}
+                onChange={field.onChange}
+                value={field.value}
+            />
         </FormControl>
 
     )

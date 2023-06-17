@@ -1,10 +1,21 @@
+import { useState } from "react";
 import { Box, IconButton } from "@mui/material";
-import { DeleteOutline, Edit } from "@mui/icons-material"
+import { DeleteOutline } from "@mui/icons-material";
 
-export function GridFrameworkComponentDeleteUser() {
+import { UserDelete } from "..";
+
+export function GridFrameworkComponentDelete() {
+    const [deleteOpen, setDeleteOpen] = useState(false)
+
+
+    const handleDeleteOpen = () => {
+        setDeleteOpen(true)
+    }
+
     return (
         <Box>
-            <IconButton size={'small'}>
+            <UserDelete deleteOpen={deleteOpen} setDeleteOpen={setDeleteOpen} />
+            <IconButton size={'small'} sx={{ ml: 1 }} onClick={handleDeleteOpen}>
                 <DeleteOutline fontSize="small" />
             </IconButton>
         </Box>

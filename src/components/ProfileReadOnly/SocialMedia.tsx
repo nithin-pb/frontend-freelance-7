@@ -1,89 +1,127 @@
 import { useEffect, useState } from "react";
-import { Box, Typography, Divider, Collapse, IconButton as MuiIconButton, Paper, TextField } from "@mui/material";
-import { Language, Twitter, Instagram, Facebook, LinkedIn, DeleteOutline, KeyboardArrowDown } from "@mui/icons-material";
+import { Box, Typography, Collapse, Paper, IconButton as MuiIconButton, Divider } from "@mui/material";
+import { Language, LinkedIn, Instagram, Facebook, Twitter, KeyboardArrowDown, Add, Save, DeleteOutline, InsertLink } from "@mui/icons-material"
+import { v4 as uuid } from "uuid";
 
-import { IconButton } from "../../shared";
-import AddNewSocialMedia from "../AddNewSocialMedia";
-
+import { TextField, IconButton, Button } from "../../shared";
 //@ts-ignore
 import skypeIcon from '../../assets/icons/skype.png'
 
-export function SocialMedia(props: any) {
+const defaultSocialMedias = [
+    {
+        name: 'Facebook',
+        icon: <Facebook sx={{ color: '#008eff' }} />
+    },
+    {
+        name: 'Websites',
+        icon: <Language sx={{ color: 'red' }} />
+    },
+    {
+        name: 'Twitter',
+        icon: <Twitter sx={{ color: '#008eff' }} />
+    },
+    {
+        name: 'Instagram',
+        icon: <Instagram sx={{ color: '#ff00db' }} />
+    },
+    {
+        name: 'LinkedIn',
+        icon: <LinkedIn sx={{ color: '#007bff' }} />
+    },
+    {
+        name: 'Skype',
+        icon: <img src={skypeIcon} style={{ width: 16, marginLeft: 2 }} />
+    }
+]
+export function SocialMediaCmpt(props: any) {
     //@ts-ignore
-    const { data } = { ...props }
+    const { socialMediaApiResponse } = { ...props }
+    const [socialMediaList, setSocialMediaList] = useState(defaultSocialMedias)
+    const [socialMediaState, setSocialMediaState] = useState({})
+
+
+    useEffect(() => {
+
+        const newSList = socialMediaApiResponse.reduce((acc: any, curr: any) => {
+            const ids = curr['account_id'].map((e: any) => ({
+                id: uuid(),
+                name: e
+            }))
+            acc[curr['media_name']] = ids
+            return acc
+        }, {})
+        setSocialMediaState(newSList)
+
+        const missingMedias = defaultSocialMedias.reduce((acc: any, curr: any) => {
+            acc[curr.name.toLowerCase()] = curr
+            return acc
+        }, {})
+
+        const sList = [...socialMediaApiResponse].map((e: any) => {
+            const socialMediaName = e.media_name || e.name
+            const isExist = defaultSocialMedias.find((locale: any) => locale.name.toLowerCase() === socialMediaName.toLowerCase())
+            if (!isExist) {
+                return ({ name: socialMediaName, icon: <InsertLink /> })
+            }
+
+            delete missingMedias[socialMediaName.toLowerCase()]
+            return { ...isExist, name: socialMediaName }
+        })
+        //@ts-ignore
+        sList.push(...Object.values(missingMedias))
+        setSocialMediaList(sList)
+    }, [socialMediaApiResponse])
+
 
     return (
-        <Box>
-            <Box display={'flex'} alignItems={'center'} gap={2}>
-                <Typography >
-                    Social Profile Info
-                </Typography>
-
-            </Box>
-            <Divider sx={{ mt: 1 }} />
-            <SocialMediaAndWebsite />
+        <Box mt={-0.5}>
+            <Typography>
+                Social Media
+            </Typography>
+            <Divider sx={{ mt: 1, mb: 3 }} />
+            <SocialMediaAndWebsite
+                state={socialMediaState}
+                socialMediaList={socialMediaList}
+            />
         </Box>
     )
 }
 
-function SocialMediaAndWebsite() {
-    const initialValues = {
-        website: [],
-        skype: [],
-        linkedIn: [],
-        instagram: [],
-        facebook: [],
-        twitter: [],
-    }
-    const [websiteAndSocialMedia, setWebsiteAndSocialMedia] = useState<any>(initialValues)
+function SocialMediaAndWebsite(props: any) {
+    //@ts-ignore
+    const { state, socialMediaList } = { ...props }
+
     return (
         <Box>
             <Box>
-                <SocialMediaCmt icon={<Language sx={{ color: 'red' }} />} name={'Websites'} />
-                <SocialMediaCmt icon={<Twitter sx={{ color: '#008eff' }} />} name={'Twitter'} />
-                <SocialMediaCmt icon={<Instagram sx={{ color: '#ff00db' }} />} name={'Instagram'} />
-                <SocialMediaCmt icon={<Facebook sx={{ color: '#008eff' }} />} name={'Facebook'} />
-                <SocialMediaCmt icon={<LinkedIn sx={{ color: '#007bff' }} />} name={'LinkedIn'} />
-                <SocialMediaCmt icon={<img src={skypeIcon} style={{ width: 16, marginLeft: 2 }} />} name={'Skype'} />
+                {
+                    socialMediaList.map((e: any) => {
+                        return (
+                            <SocialMedia
+                                key={e.name}
+                                icon={e.icon}
+                                name={e.name}
+                                data={state} />
+                        )
+                    })
+                }
             </Box>
         </Box>
     )
 }
 
-function SocialMediaCmt(props: any) {
-    const { icon, name, data = [] }: { icon: any, name: string, data: any } = { ...props }
+function SocialMedia(props: any) {
+    //@ts-ignore
+    const { icon, name, data = [], onDelete, onAdd, onValueUpdate }: { icon: any, name: string, data: any } = { ...props }
     const [open, setOpen] = useState(false)
-    const [socialMedia, setSocialMedia] = useState(data || [])
-
-
-    const handleAddButton = () => {
-        setSocialMedia((oldData: any) => {
-            const newId = oldData.reduce((acc: any, curr: any) => {
-                if (acc > curr.id) return acc
-                acc = curr.id
-                return acc
-            }, 0) + 1
-            return [...oldData, { id: newId, name: '' }]
-        })
-    }
-
-    const handleDelete = (id: any) => {
-        setSocialMedia((oldData: any) => {
-            return oldData.filter((e: any) => e.id !== id)
-        })
-    }
-
-    useEffect(() => {
-        setSocialMedia([...data].map((e: any, index: number) => ({ id: index, name: e })))
-    }, [])
 
     return (
         <Box>
             <Box display={'flex'} alignItems={'center'} mt={2} gap={1}>
-                <Box sx={{ width: 20 }}>
+                <Box sx={{ width: 20, mt: 0.5 }}>
                     {icon}
                 </Box>
-                <Typography sx={{ width: 80 }}>
+                <Typography sx={{ width: 100 }}>
                     {name}
                 </Typography>
                 <MuiIconButton size={'small'} onClick={() => setOpen((e: any) => !e)}>
@@ -92,23 +130,20 @@ function SocialMediaCmt(props: any) {
             </Box>
             <Collapse in={open}>
                 <Paper variant={'outlined'} sx={{ borderRadius: 2.5, p: 2, mt: 1, }} >
-                    <ul style={{ listStyle: 'none', padding: 0, margin: 0, marginBottom: socialMedia.length === 0 ? 0 : 8 }}>
-                        {socialMedia.length !== 0 && <Typography> Edit or Add {name}</Typography>}
-                        {socialMedia.length === 0 && <Typography> No {name} found</Typography>}
-                        {socialMedia.map((e: any) => (
+                    <ul style={{ listStyle: 'disc', paddingLeft: 26, margin: 0, marginBottom: data[name]?.length === 0 ? 0 : 8 }}>
+                        {data[name]?.length === 0 && <Typography> No {name} found</Typography>}
+                        {data[name]?.map((e: any) => (
                             <li key={e.id}>
-                                <Box display={'flex'} gap={1} alignItems={'center'}>
-                                    <TextField label={''} value={e.name} />
-                                    <IconButton sx={{ mt: 1.8 }} onClick={() => handleDelete(e.id)}>
-                                        <DeleteOutline />
-                                    </IconButton>
+                                <Box display={'flex'} gap={1} alignItems={'center'} py={0.1}>
+                                    <a href={e.name} target={'_blank'} rel="noreferrer">
+                                        <Typography>{e.name}</Typography>
+                                    </a>
                                 </Box>
                             </li>
                         ))}
                     </ul>
                 </Paper>
             </Collapse>
-        </Box>
-
+        </Box >
     )
 }

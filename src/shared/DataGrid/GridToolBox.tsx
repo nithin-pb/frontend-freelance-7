@@ -13,7 +13,7 @@ export function GridToolBox(props: IGridToolBox) {
     }
 
     const onBtnExport = () => {
-        gridApi.exportDataAsCsv({ fileName: new Date().getTime() });
+        gridApi.exportDataAsCsv({ fileName: new Date().getTime(), onlySelected: true });
     };
 
     return (
@@ -41,15 +41,15 @@ export function GridToolBox(props: IGridToolBox) {
                     gridApi.setQuickFilter(e);
                 }} />
             <Stack direction={'row'} spacing={2}>
-                {totalPage ? <Pagination count={totalPage}
-                    style={{ paddingTop: 2, flexWrap: "nowrap" }}
-                    onChange={(e, value) => gotoPageNumber(value)}
-                    shape="rounded"
-                    page={currentPage}
-                    size={'small'} /> : null}
-                {/* <IconButton onClick={onBtnExport}>
-                    <SaveOutlined fontSize={'small'} color={'action'} />
-                </IconButton> */}
+                {totalPage ?
+                    <Pagination count={totalPage}
+                        style={{ paddingTop: 2, flexWrap: "nowrap" }}
+                        onChange={(e, value) => gotoPageNumber(value)}
+                        shape="rounded"
+                        page={currentPage}
+                        size={'small'} />
+                    : null
+                }
             </Stack>
         </Stack >
     )
@@ -58,7 +58,7 @@ export function GridToolBox(props: IGridToolBox) {
 
 function GlobalSearchBox({ onSearchChange }: { onSearchChange: any }) {
     return (
-        <Box display={'flex'} alignItems={'center'} sx={{ ml: 2 }}>
+        <Box display={'flex'} alignItems={'center'} sx={{ ml: 2, flex: 1 }}>
             <Search color={'action'} />
             <input className={'global-search-input'} placeholder={'Search here'}
                 onChange={(e) => onSearchChange(e.target.value)} />

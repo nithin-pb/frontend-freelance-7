@@ -20,7 +20,7 @@ export default function ProfileTemplateWidget(props: any) {
     return (
         <Paper sx={{ borderRadius: 3, overflow: 'hidden' }} variant={'outlined'}>
             <Box sx={{ background: '#e9e9e9' }}>
-                <Component />
+                <Component data={data} />
             </Box>
         </Paper>
     )

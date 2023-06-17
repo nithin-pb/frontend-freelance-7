@@ -13,7 +13,7 @@ export default function ThemeProvider({ children }: { children: any }) {
                     //primary: "#0a1a10",
                 },
                 primary: {
-                    main: '#9b00ff',
+                    main: '#ff5000',
                 },
                 secondary: {
                     main: '#e1d778',

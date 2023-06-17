@@ -1,13 +1,13 @@
-import { Box, Stack, Typography } from '@mui/material'
+import { Box, CircularProgress, Stack, Typography } from '@mui/material'
 import { Link, useNavigate } from 'react-router-dom'
-import { Form, Formik, useFormikContext } from "formik"
+import { Form, Formik } from "formik"
 
 import { useAuthentication } from "../../hooks/query"
-import { Button, TextField } from '../../shared'
+import { Button, TextField, Alert } from '../../shared'
 
 import { signinValidator } from '../../validations'
-import './index.scss'
 import { useAuthorization } from '../../hooks'
+import './index.scss'
 
 
 export default function Login() {
@@ -21,17 +21,20 @@ export default function Login() {
     }
 
     const handleSignIn = async (e: any) => {
-        const params = {}
+        const params = {
+            userName: e.username,
+            password: e.password
+        }
         const options = {
             auth: {
-                username: e.username,
+                userName: e.username,
                 password: e.password
             }
         }
         const response = await useSignIn.mutateAsync({ params, options })
         setAuthorization({
             authorized: true,
-            accessToken: response?.data?.results?.accessToken
+            accessToken: response?.accessToken
         })
         navigate('/dashboard')
     }
@@ -77,11 +80,17 @@ export default function Login() {
                                     type={'submit'}
                                     variant={'contained'}
                                     sx={{ p: 1, width: '100%' }}>
-                                    Sign In
+                                    {
+                                        useSignIn.isLoading ? <CircularProgress size={16} sx={{ color: '#fff' }} /> : 'Sign In'
+                                    }
                                 </Button>
                                 <Button variant={'outlined'} sx={{ p: 1, mt: 2, width: '100%' }}>
                                     Back to Home
                                 </Button>
+
+                                <Box mt={useSignIn.isError ? 2 : 0}>
+                                    <Alert isError={useSignIn.isError} error={useSignIn.error} />
+                                </Box>
                             </Box>
                         </Stack>
                     </Box>

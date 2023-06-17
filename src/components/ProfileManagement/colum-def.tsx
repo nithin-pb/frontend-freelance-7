@@ -50,6 +50,14 @@ export const columDefinition = [
     },
     {
         field: 'phone',
+        valueFormatter: ({ value = '' }: { value: any }) => {
+            const phoneSplit = value.split('-')
+            if (phoneSplit.length > 1) {
+                return `+(${phoneSplit[0]})-${phoneSplit[1]}`
+            }
+
+            return `+(00)-${value}`
+        },
         flex: 1
     },
     {
@@ -64,59 +72,10 @@ export const columDefinition = [
         headerName: 'Referred By',
         field: 'refferdBy',
         flex: 1
+    },
+    {
+        headerName: 'Status',
+        field: 'user_active',
+        width: 100,
     }
-    // {
-    //     field: 'websites',
-    //     width: '120px',
-    //     cellRendererFramework: function GFC(props: any) {
-    //         return (
-    //             <GridFrameworkComponentSocialMedia icon={<Language />} value={props.value} />
-    //         )
-    //     }
-    // },
-    // {
-    //     field: 'linkedIn',
-    //     width: 120,
-    //     cellRendererFramework: function GFC(props: any) {
-    //         return (
-    //             <GridFrameworkComponentSocialMedia icon={<LinkedIn />} value={props.value} />
-    //         )
-    //     }
-    // },
-    // {
-    //     field: 'skype',
-    //     width: 100,
-    //     cellRendererFramework: function GFC(props: any) {
-    //         return (
-    //             <GridFrameworkComponentSocialMedia icon={<img style={{ width: 17 }} src={skypeIcon} alt={'skype icon'} />} value={props.value} />
-    //         )
-    //     }
-    // },
-    // {
-    //     field: 'instagram',
-    //     width: 120,
-    //     cellRendererFramework: function GFC(props: any) {
-    //         return (
-    //             <GridFrameworkComponentSocialMedia icon={<Instagram />} value={props.value} />
-    //         )
-    //     }
-    // },
-    // {
-    //     field: 'facebook',
-    //     width: 120,
-    //     cellRendererFramework: function GFC(props: any) {
-    //         return (
-    //             <GridFrameworkComponentSocialMedia icon={<Facebook />} value={props.value} />
-    //         )
-    //     }
-    // },
-    // {
-    //     field: 'twitter',
-    //     width: 120,
-    //     cellRendererFramework: function GFC(props: any) {
-    //         return (
-    //             <GridFrameworkComponentSocialMedia icon={<Twitter />} value={props.value} />
-    //         )
-    //     }
-    // }
 ]

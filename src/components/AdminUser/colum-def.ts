@@ -1,5 +1,5 @@
 import { GridFrameworkComponentEditUser } from "./GFCEditUser"
-import { GridFrameworkComponentDeleteUser } from "./GFCDeleteUser"
+import { GridFrameworkComponentDelete } from "./GFCDeleteUser"
 
 export const columDefinition = [
     {
@@ -13,7 +13,7 @@ export const columDefinition = [
         headerName: '',
         field: 'id',
         width: 40,
-        cellRendererFramework: GridFrameworkComponentDeleteUser,
+        cellRendererFramework: GridFrameworkComponentDelete,
         cellStyle: { padding: 0, border: 'none' }
     },
     {
@@ -31,6 +31,11 @@ export const columDefinition = [
     {
         headerName: 'Gender',
         field: 'Gender',
+        flex: 1
+    },
+    {
+        headerName: 'Role',
+        field: 'Role',
         flex: 1
     }
 ]

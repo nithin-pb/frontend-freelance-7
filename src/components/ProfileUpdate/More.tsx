@@ -3,7 +3,7 @@ import { TextField } from "../../shared";
 
 export function More(props: any) {
     //@ts-ignore
-    const { profileCreatedBy } = { ...props }
+    const { profileCreatedBy, profileRefferedyBy: profileRefereedBy } = { ...props }
     return (
         <Box>
             <Typography>
@@ -35,17 +35,24 @@ export function More(props: any) {
                 </Grid>
                 <Grid item xs={12}>
                     <TextField label={'Profile Referred By'} name={"refferdBy"} />
+
                 </Grid>
                 <Grid item xs={12}>
                     <Typography variant={'body2'} color={'text.secondary'}>
                         Profile Created By
                     </Typography>
-                    <Typography sx={{ fontWeight: 600 }} color={'text.secondary'}>
-                        {profileCreatedBy}
-                    </Typography>
+                    {
+                        profileCreatedBy ?
+                            <Typography sx={{ fontWeight: 600 }} color={'text.secondary'}>
+                                {profileCreatedBy}
+                            </Typography> :
+                            <Typography variant="body1" color={'text.secondary'}>
+                                -
+                            </Typography>
+                    }
+
                 </Grid>
             </Grid>
-            <Divider sx={{ mt: 1 }} />
         </Box>
     )
 }

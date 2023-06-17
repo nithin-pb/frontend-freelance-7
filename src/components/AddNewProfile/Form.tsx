@@ -35,7 +35,8 @@ export function BasicForm(props: any) {
         "websites": "",
         "bio": "",
         "invite": "",
-        "refferdBy": ""
+        "refferdBy": "",
+        "activeTheme": "Earth"
     }
 
 
@@ -140,7 +141,7 @@ export function BasicForm(props: any) {
                                 successMessage={'Profile Created'}
                                 isSuccess={useCreateProfile.isSuccess}
                                 isError={useCreateProfile.isError}
-                                errorMessage={useCreateProfile?.error} />
+                                error={useCreateProfile?.error} />
                         </Grid>
                     </Grid>
 

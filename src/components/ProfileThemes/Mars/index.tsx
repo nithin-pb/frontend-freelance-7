@@ -2,7 +2,11 @@ import { Box, Divider, Paper, Typography } from "@mui/material";
 import { Button } from "../../../shared";
 import { EmailOutlined, LocalPhoneOutlined, LocationOnOutlined } from "@mui/icons-material";
 
-export default function Mars() {
+//@ts-ignore
+import noImage from '../../../assets/images/no-image.jpg'
+
+export default function Mars(props: any) {
+    const { data = {} }: { data?: any } = { ...props }
     return (
         <Box
             display={'flex'}
@@ -17,15 +21,15 @@ export default function Mars() {
         >
             <Box display={'flex'} justifyContent={'space-between'}>
                 <Paper variant="outlined" sx={{ borderRadius: '10%', height: 100, width: 100, overflow: 'hidden' }}>
-                    <img src={imageLink} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <img src={data.profile_image || noImage} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </Paper>
             </Box>
             <Box mt={2}>
                 <Typography variant="h6" sx={{ fontWeight: 600 }} align={'center'} color={'white'}>
-                    Jane Doe
+                    {data.name || 'Unknown'}
                 </Typography>
                 <Typography sx={{ ml: '-2px' }} align={'center'} color={'white'}>
-                    HR Manager @ Amazon.com
+                    {data.designation || 'Unknown'} @ {data.company_name || 'Unknown'}
                 </Typography>
             </Box>
             <Box mt={2} >
@@ -39,9 +43,9 @@ export default function Mars() {
 
             <Box mt={2} width={'100%'} >
                 <Divider sx={{ mb: 2, background: 'white' }} />
-                <Property name={'Email'} icon={EmailOutlined} value={'test@testoutline.com'} />
-                <Property name={'Phone'} icon={LocalPhoneOutlined} value={'+(91)-985652235'} />
-                <Property name={'Address'} icon={LocationOnOutlined} value={'test test\ntest\ntest, 685552'} />
+                <Property name={'Email'} icon={EmailOutlined} value={data.email || 'Unknown'} />
+                <Property name={'Phone'} icon={LocalPhoneOutlined} value={data.phone || 'Unknown'} />
+                <Property name={'Address'} icon={LocationOnOutlined} value={data.address || 'Unknown'} />
             </Box>
         </Box>
     )

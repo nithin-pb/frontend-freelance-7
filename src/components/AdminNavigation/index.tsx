@@ -1,6 +1,6 @@
-import { Link, NavLink } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import { Box, Typography } from "@mui/material"
-import { SupervisedUserCircleOutlined, AdminPanelSettingsOutlined, AssessmentOutlined, DownloadForOfflineOutlined } from '@mui/icons-material'
+import { SupervisedUserCircleOutlined, AdminPanelSettingsOutlined, AssessmentOutlined, DownloadForOfflineOutlined, SecurityOutlined } from '@mui/icons-material'
 
 import "./index.scss"
 
@@ -16,15 +16,20 @@ const navigationMenuItems = [
         icon: <SupervisedUserCircleOutlined />
     },
     {
+        name: 'Roles & Permissions',
+        link: '/dashboard/roles',
+        icon: <SecurityOutlined />
+    },
+    {
         name: 'Reports',
         link: '/dashboard/reports',
         icon: <AssessmentOutlined />
     },
-    {
-        name: 'Download Center',
-        link: '/dashboard/download-center',
-        icon: <DownloadForOfflineOutlined />
-    },
+    // {
+    //     name: 'Download Center',
+    //     link: '/dashboard/download-center',
+    //     icon: <DownloadForOfflineOutlined />
+    // },
 ]
 
 

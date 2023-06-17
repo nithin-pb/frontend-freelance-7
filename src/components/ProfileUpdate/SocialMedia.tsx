@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { Box, Typography, Collapse, Paper, IconButton as MuiIconButton, Dialog } from "@mui/material";
+import { Box, Typography, Collapse, Paper, IconButton as MuiIconButton, Divider } from "@mui/material";
 import { Language, LinkedIn, Instagram, Facebook, Twitter, KeyboardArrowDown, Add, Save, DeleteOutline, InsertLink } from "@mui/icons-material"
+import { v4 as uuid } from "uuid";
 
 import { TextField, IconButton, Button } from "../../shared";
 import { AddNewSocialMedia } from "..";
 //@ts-ignore
 import skypeIcon from '../../assets/icons/skype.png'
-import { Formik, Form } from "formik";
 
 const defaultSocialMedias = [
     {
@@ -36,7 +36,7 @@ const defaultSocialMedias = [
 ]
 export function SocialMediaCmpt(props: any) {
     //@ts-ignore
-    const { socialMediaState, setSocialMediaState } = { ...props }
+    const { socialMediaState, setSocialMediaState, socialMediaApiResponse } = { ...props }
     const [socialMediaList, setSocialMediaList] = useState(defaultSocialMedias)
 
     const handleSocialMediaAdd = (e: any) => {
@@ -44,38 +44,52 @@ export function SocialMediaCmpt(props: any) {
         setSocialMediaState((current: any) => ({ ...current, [e]: [] }))
     }
 
-    // useEffect(() => {
-    //     setSocialMediaList((socialMediaList) => {
-    //         const sList = Object.keys(setSocialMediaState).map(e => {
-    //             console.log('socialMedia', e)
-    //             const isExist = socialMediaList.find((locale: any) => locale.name.toLowerCase() === e.toLowerCase())
-    //             if (isExist) {
-    //                 return isExist
-    //             }
-    //             return ({ name: e, icon: <InsertLink /> })
-    //         })
-    //         return sList
-    //     })
-    // }, [socialMediaState])
+    useEffect(() => {
+
+        const newSList = socialMediaApiResponse.reduce((acc: any, curr: any) => {
+            const ids = curr['account_id'].map((e: any) => ({
+                id: uuid(),
+                name: e
+            }))
+            acc[curr['media_name']] = ids
+            return acc
+        }, {})
+        setSocialMediaState(newSList)
+
+        const missingMedias = defaultSocialMedias.reduce((acc: any, curr: any) => {
+            acc[curr.name.toLowerCase()] = curr
+            return acc
+        }, {})
+
+        const sList = [...socialMediaApiResponse].map((e: any) => {
+            const socialMediaName = e.media_name || e.name
+            const isExist = defaultSocialMedias.find((locale: any) => locale.name.toLowerCase() === socialMediaName.toLowerCase())
+            if (!isExist) {
+                return ({ name: socialMediaName, icon: <InsertLink /> })
+            }
+
+            delete missingMedias[socialMediaName.toLowerCase()]
+            return { ...isExist, name: socialMediaName }
+        })
+        //@ts-ignore
+        sList.push(...Object.values(missingMedias))
+        setSocialMediaList(sList)
+    }, [socialMediaApiResponse])
 
     return (
         <Box mt={-0.5}>
-            {/* <Box display={'flex'} alignItems={'center'} gap={2}>
+            <Box display={'flex'} alignItems={'center'} gap={2}>
                 <Typography >
                     Social Profile Info
                 </Typography>
 
             </Box>
-            <Divider sx={{ mt: 1 }} /> */}
-            <Formik onSubmit={() => { }} initialValues={{}}>
-                <Form>
-                    <SocialMediaAndWebsite
-                        state={socialMediaState}
-                        setState={setSocialMediaState}
-                        socialMediaList={socialMediaList}
-                    />
-                </Form>
-            </Formik>
+            <Divider sx={{ mt: 1 }} />
+            <SocialMediaAndWebsite
+                state={socialMediaState}
+                setState={setSocialMediaState}
+                socialMediaList={socialMediaList}
+            />
             <Box sx={{ mt: 1 }}>
                 <Typography color={'text.secondary'}>
                     Create new social media from below
@@ -95,11 +109,7 @@ function SocialMediaAndWebsite(props: any) {
 
     const handleAddButton = (socialMedia: string) => {
         setState((oldData: any) => {
-            const newId = oldData[socialMedia].reduce((acc: any, curr: any) => {
-                if (acc > curr.id) return acc
-                acc = curr.id
-                return acc
-            }, 0) + 1
+            const newId = uuid()
             return { ...oldData, [socialMedia]: [...oldData[socialMedia], { id: newId, name: '' }] }
         })
     }
@@ -131,6 +141,7 @@ function SocialMediaAndWebsite(props: any) {
                     socialMediaList.map((e: any) => {
                         return (
                             <SocialMedia
+                                key={e.name}
                                 icon={e.icon}
                                 onValueUpdate={handleValueUpdate}
                                 name={e.name}
@@ -181,7 +192,7 @@ function SocialMedia(props: any) {
                                         label={''}
                                         ignoreFormik={true}
                                         name={`${name}-${e.id}`}
-                                        value={e.name}
+                                        value={e.name || ''}
                                         onChange={(event: any) => handleValueUpdate(event, name, e.id)} />
                                     <IconButton sx={{ mt: 1.8 }} onClick={() => onDelete(name, e.id)}>
                                         <DeleteOutline />

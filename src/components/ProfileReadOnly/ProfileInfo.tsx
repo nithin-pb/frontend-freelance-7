@@ -15,6 +15,9 @@ export function ProfileInfo(props: any) {
                 <Property name={'Bio'} value={data?.bio} />
                 <Property name={'Username'} value={data?.user_name} />
                 <Property name={'Password'} value={'****************'} />
+                <Property name={'Invite'} value={data?.invite} />
+                <Property name={'URL'} value={data?.url} />
+                <Property name={'Unique Id'} value={data?.unique_id} />
                 <Property name={'Profile Referred By'} value={data?.refferdBy} />
                 <Property name={'Profile Created By'} value={data?.createdBy} />
             </Grid>
@@ -30,9 +33,10 @@ function Property(props: any) {
             <Typography variant="body2" color={'text.secondary'} sx={{ fontWeight: 600 }}>
                 {name}
             </Typography>
-            <Typography variant="body1" >
-                {value}
-            </Typography>
+            {
+                value ? <Typography variant="body1" >{value}</Typography>
+                    : <Typography variant="body1" color={'text.secondary'}>Unknown </Typography>
+            }
         </Grid>
     )
 }

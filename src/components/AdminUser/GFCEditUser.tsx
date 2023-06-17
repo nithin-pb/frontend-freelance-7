@@ -1,5 +1,5 @@
 import { Box, IconButton } from "@mui/material";
-import { EditAttributes, Edit } from "@mui/icons-material"
+import { Edit } from "@mui/icons-material"
 import { Link } from "react-router-dom";
 
 export function GridFrameworkComponentEditUser(props: any) {
@@ -10,7 +10,6 @@ export function GridFrameworkComponentEditUser(props: any) {
                     <Edit fontSize="small" />
                 </IconButton>
             </Link>
-
         </Box>
     )
 }

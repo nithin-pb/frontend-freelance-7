@@ -10,7 +10,7 @@ const useAuthentication = () => {
 
     const useSignIn = useMutation(
         (params: any) => axios.post(apiEndPoint.signIn, params.params, params.options)
-            .then((e: any) => e?.data?.data)
+            .then((e: any) => e?.data?.result)
     )
     const useLogout = useMutation((params: any) => axiosPrivate.post(apiEndPoint.logout, params).then((e: any) => e?.data?.result))
 

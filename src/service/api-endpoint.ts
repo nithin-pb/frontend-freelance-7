@@ -1,5 +1,5 @@
 export const apiEndPoint = {
-    signIn: '/signin',
+    signIn: '/login',
     logout: '/logout',
     profile: {
         list: 'listProfiles',
@@ -10,5 +10,13 @@ export const apiEndPoint = {
     },
     socialMedia: {
         create: 'createSocialMediaProfile'
+    },
+    user: {
+        create: 'listProfiles',
+        update: 'listProfiles',
+        delete: 'listProfiles',
+        list: 'listProfiles',
+        listById: 'listProfiles',
+        passwordReset: 'listProfiles'
     }
 }

@@ -11,7 +11,7 @@ export function Preview(props: any) {
                 Preview
             </Typography>
             <Divider sx={{ mt: 1, mb: 3 }} />
-            <ProfileTemplateWidget />
+            <ProfileTemplateWidget data={data} />
         </Box>
     )
 }

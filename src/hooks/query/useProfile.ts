@@ -25,7 +25,7 @@ const useProfile = () => {
 
     const useListProfile = () => useQuery(['profileList'],
         (params: any) => axiosPrivate.get(apiEndPoint.profile.list, params)
-            .then((e: any) => e?.data?.result))
+            .then((e: any) => e?.data?.result.map((e: any) => ({ ...e, user_active: e.user_active ? 'Active' : 'Disabled' }))))
 
     const useListProfileByUsername = useMutation(
         (username: any) => axiosPrivate.get(`${apiEndPoint.profile.listByUsername}/${username}`)

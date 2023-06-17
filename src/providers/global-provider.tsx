@@ -7,9 +7,13 @@ import { ThemeProvider, QueryProvider } from '.'
 export default function GlobalProvider({ children }: IGlobalProvider) {
     // context and initialization goes here
     const [authorization, setAuthorization] = useState({
-        authorized: true,
-        accessToken: '45656454'
+        authorized: false,
+        accessToken: null
     })
+    // const [authorization, setAuthorization] = useState({
+    //     authorized: true,
+    //     accessToken: '123123'
+    // })
     const [activeTheme, setActiveTheme] = useState('Earth')
 
     return (
