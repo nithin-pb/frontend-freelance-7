@@ -71,18 +71,7 @@ export default function UserUpdate() {
                                         <TextField label={'Email'} value={''} />
                                     </Grid>
                                     <Grid item xs={6}>
-                                        <FormControl>
-                                            <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
-                                            <RadioGroup
-                                                row
-                                                aria-labelledby="demo-row-radio-buttons-group-label"
-                                                name="row-radio-buttons-group"
-                                            >
-                                                <FormControlLabel value="female" control={<Radio />} label="Female" />
-                                                <FormControlLabel value="male" control={<Radio />} label="Male" />
-                                                <FormControlLabel value="other" control={<Radio />} label="Other" />
-                                            </RadioGroup>
-                                        </FormControl>
+                                        <Gender />
                                     </Grid>
                                     <Grid item xs={6}>
                                         <RoleSelect />
@@ -162,6 +151,48 @@ function PasswordReset() {
     )
 }
 
+
+function Gender() {
+    const [field, meta] = useField('gender')
+
+
+    const handleGenderChange = (e: any, value: string) => {
+        field.onChange(({
+            target: {
+                name: 'gender',
+                value: value
+            }
+        }))
+    }
+
+    const configTextField = {
+        error: false,
+        helperText: ''
+    };
+
+    if (meta && meta.touched && meta.error) {
+        configTextField.error = true;
+        configTextField.helperText = meta.error;
+    }
+
+
+    return (
+        <FormControl>
+            <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
+            <RadioGroup
+                onChange={handleGenderChange}
+                row
+                value={field.value}
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="row-radio-buttons-group"
+            >
+                <FormControlLabel value="female" control={<Radio />} label="Female" />
+                <FormControlLabel value="male" control={<Radio />} label="Male" />
+                <FormControlLabel value="other" control={<Radio />} label="Other" />
+            </RadioGroup>
+        </FormControl>
+    )
+}
 
 function RoleSelect() {
     const [options, setOptions] = useState<any[]>([])
