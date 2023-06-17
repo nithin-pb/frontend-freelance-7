@@ -97,12 +97,12 @@ function PasswordReset() {
     const { useUserPasswordReset } = useUser()
     const { mutateAsync } = useUserPasswordReset()
 
-    const [passwordData, setPasswordData] = useState({
+    const passwordData = {
         oldPassword: '',
         currentPassword: '',
         currentPasswordConfirm: '',
 
-    })
+    }
 
     const handleUpdate = async () => {
         try {
